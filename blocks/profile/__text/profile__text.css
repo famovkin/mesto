@@ -1,0 +1,7 @@
+.profile__text {
+  display: grid;
+  grid-template-columns: 294px max-content;
+  align-items: flex-end;
+  column-gap: 18px;
+  row-gap: 16px;
+}
