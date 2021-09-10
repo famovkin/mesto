@@ -4,3 +4,10 @@
   align-items: center;
   gap: 30px;
 }
+
+@media (max-width: 768px) {
+  .profile__info {
+    gap: 26px;
+    flex-direction: column;
+  }
+}

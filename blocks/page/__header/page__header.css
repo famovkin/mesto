@@ -9,9 +9,15 @@
   }
 }
 
+@media (max-width: 768px) {
+  .page__header {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 425px) {
   .page__header {
-    max-width: calc(100% - 54px);
+    max-width: 100%;
     margin-bottom: 38px;
   }
 }

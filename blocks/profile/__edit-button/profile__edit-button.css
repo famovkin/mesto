@@ -1,9 +1,17 @@
 .profile__edit-button {
   padding: 7px;
   border: 1px solid #fff;
+  transform: translate(0, -6px);
   transition: opacity .5s;
 }
 
 .profile__edit-button:hover {
   opacity: .5;
+}
+
+@media (max-width: 425px) {
+  .profile__edit-button {
+    width: 8px;
+    padding: 5px;
+  }
 }

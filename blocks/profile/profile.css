@@ -3,3 +3,17 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile {
+    row-gap: 36px;
+  }
+}

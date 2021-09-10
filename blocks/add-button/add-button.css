@@ -7,3 +7,16 @@
 .add-button:hover {
   opacity: .6;
 }
+
+@media (max-width: 768px) {
+  .add-button {
+    padding: 14px 87px;
+  }
+}
+
+@media (max-width: 425px) {
+  .add-button {
+    width: 16px;
+    padding: 17px 128px;
+  }
+}

@@ -3,6 +3,23 @@
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1.22;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .profile__activity {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile__activity {
+    font-size: 14px;
+  }
 }

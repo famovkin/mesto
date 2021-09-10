@@ -2,3 +2,15 @@
   max-width: 880px;
   margin: 0 auto 50px;
 }
+
+@media (max-width: 950px) {
+  .page__profile {
+    max-width: calc(100% - 70px);
+  }
+}
+
+@media (max-width: 425px) {
+  .page__profile {
+    margin-bottom: 36px;
+  }
+}

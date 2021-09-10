@@ -6,5 +6,21 @@
   line-height: 1.14;
   margin: 0;
   position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .profile__name {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 1.22;
+    text-align: center;
+  }
+}

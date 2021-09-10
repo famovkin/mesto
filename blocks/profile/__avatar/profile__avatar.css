@@ -2,3 +2,15 @@
   border-radius: 50%;
   width: 120px;
 }
+
+@media (max-width: 768px) {
+  .profile__avatar {
+    width: 200px;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile__avatar {
+    width: 120px;
+  }
+}
