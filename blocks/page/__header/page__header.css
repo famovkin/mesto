@@ -1,4 +1,17 @@
 .page__header {
   max-width: 880px;
-  margin: 0 auto 40px;
+  margin: 0 auto 36px;
+}
+
+@media (max-width: 950px) {
+  .page__header {
+    max-width: calc(100% - 70px);
+  }
+}
+
+@media (max-width: 425px) {
+  .page__header {
+    max-width: calc(100% - 54px);
+    margin-bottom: 38px;
+  }
 }
