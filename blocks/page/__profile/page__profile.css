@@ -11,6 +11,7 @@
 
 @media (max-width: 425px) {
   .page__profile {
+    max-width: calc(100% - 38px);
     margin-bottom: 36px;
   }
 }
