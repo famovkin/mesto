@@ -1,0 +1,9 @@
+.places__like-btn {
+  width: 20px;
+  height: 30px;
+  transition: opacity .5s;
+}
+
+.places__like-btn:hover {
+  opacity: .5;
+}
