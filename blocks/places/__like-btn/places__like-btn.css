@@ -1,9 +1,22 @@
 .places__like-btn {
-  width: 20px;
-  height: 30px;
   transition: opacity .5s;
 }
 
 .places__like-btn:hover {
   opacity: .5;
 }
+
+@media (max-width: 630px) {
+  .places__like-btn {
+    width: 32px;
+    height: 27px;
+  }
+}
+
+@media (max-width: 425px) {
+  .places__like-btn {
+    width: 22px;
+    height: 19px;
+  }
+}
+

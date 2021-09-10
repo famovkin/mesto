@@ -7,3 +7,15 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (max-width: 630px) {
+  .places__title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 425px) {
+  .places__title {
+    line-height: 1.31;
+  }
+}
