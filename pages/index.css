@@ -5,6 +5,7 @@
 @import url(../blocks/page/__header/page__header.css);
 @import url(../blocks/page/__profile/page__profile.css);
 @import url(../blocks/page/__places/page__places.css);
+@import url(../blocks/page/__footer/page__footer.css);
 
 @import url(../blocks/header/header.css);
 
@@ -24,3 +25,6 @@
 @import url(../blocks/places/__content/places__content.css);
 @import url(../blocks/places/__title/places__title.css);
 @import url(../blocks/places/__like-btn/places__like-btn.css);
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
