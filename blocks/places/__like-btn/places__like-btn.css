@@ -1,5 +1,6 @@
 .places__like-btn {
   transition: opacity .5s;
+  cursor: pointer;
 }
 
 .places__like-btn:hover {

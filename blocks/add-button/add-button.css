@@ -2,6 +2,7 @@
   padding: 14px 64px ;
   border: 2px solid #fff;
   transition: opacity .5s;
+  cursor: pointer;
 }
 
 .add-button:hover {

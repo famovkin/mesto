@@ -3,6 +3,7 @@
   border: 1px solid #fff;
   transform: translate(0, -6px);
   transition: opacity .5s;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {

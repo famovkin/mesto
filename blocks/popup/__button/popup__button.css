@@ -9,6 +9,7 @@
   line-height: 1.22;
   padding: 14px 0 18px;
   transition: opacity .5s;
+  cursor: pointer;
 }
 
 .popup__button:hover {
