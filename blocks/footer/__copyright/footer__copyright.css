@@ -3,5 +3,12 @@
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1.22;
+}
+
+@media (max-width: 768px) {
+  .footer__copyright {
+  font-size: 14px;
+  line-height: 1.21;
+  }
 }

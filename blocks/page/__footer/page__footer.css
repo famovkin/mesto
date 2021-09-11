@@ -2,3 +2,16 @@
   max-width: 880px;
   margin: auto;
 }
+
+@media (max-width: 950px) {
+  .page__footer {
+    max-width: calc(100% - 50px);
+  }
+}
+
+@media (max-width: 425px) {
+  .page__footer {
+    max-width: calc(100% - 38px);
+  }
+}
+
