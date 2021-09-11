@@ -4,90 +4,88 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mesto — сервис, куда можно добавлять фотографии, удалять их и ставить лайки.">
+    <meta name="description" content="Mesto — сервис, куда можно добавлять фотографии, удалять их и ставить лайки">
     <meta name="keywords" content="Фото, природа, путешествия, соцсеть">
     <meta name="author" content="Толя Фам">
     <link rel="icon" href="./images/favicon.png" type="image/png">
     <link rel="stylesheet" href="pages/index.css">
     <title>Mesto</title>
   </head>
-  <body>
-    <div class="page">
-      <header class="header page__header">
-        <img class="logo header__logo" src="./images/logo.svg" alt="Логотип Mesto">
-      </header>
-      <main>
-        <section class="profile page__profile">
-          <div class="profile__info">
-            <img class="profile__avatar" src="./images/avatar.png" alt="Аватарка пользователя">
-            <div class="profile__text">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <img class="profile__edit-button" src="./images/edit_button.svg" alt="Карандаш">
-              <span class="profile__job">Исследователь океана</span>
-            </div>
+  <body class="page">
+    <header class="header page__header">
+      <img class="logo header__logo" src="./images/logo.svg" alt="Логотип Mesto">
+    </header>
+    <main>
+      <section class="profile page__profile">
+        <div class="profile__info">
+          <img class="profile__avatar" src="./images/avatar.png" alt="Аватарка пользователя">
+          <div class="profile__text">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <img class="profile__edit-button" src="./images/edit_button.svg" alt="Карандаш">
+            <span class="profile__job">Исследователь океана</span>
           </div>
-          <img class="add-button" src="./images/add_button.svg" alt="Плюс">
-        </section>
-        <section class="places page__places" aria-label="Блок с фотографиями">
-          <ul class="places__cards">
-            <li class="places__card">
-              <img class="places__image" src="./images/vladimir.jpg" alt="Колесо обозрения во Владимире">
-              <div class="places__content">
-                <span class="places__title">Владимир</span>
-                <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
-              </div>
-            </li>
-            <li class="places__card">
-              <img class="places__image" src="./images/budapest.jpg" alt="Трёхмерное граффити в Будапеште">
-              <div class="places__content">
-                <span class="places__title">Будапешт</span>
-                <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
-              </div>
-            </li>
-            <li class="places__card">
-              <img class="places__image" src="./images/kaliningrad.jpg" alt="Старинные здания в Калининграде">
-              <div class="places__content">
-                <span class="places__title">Калининград (Königsberg)</span>
-                <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
-              </div>
-            </li>
-            <li class="places__card">
-              <img class="places__image" src="./images/budapest2.jpg" alt="Граффити с изображением быка в Будапеште">
-              <div class="places__content">
-                <span class="places__title">Будапешт</span>
-                <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
-              </div>
-            </li>
-            <li class="places__card">
-              <img class="places__image" src="./images/thailand.jpg" alt="Ночной маркет в Тайланде">
-              <div class="places__content">
-                <span class="places__title">Тайланд</span>
-                <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
-              </div>
-            </li>
-            <li class="places__card">
-              <img class="places__image" src="./images/vietnam.jpg" alt="Вид на Южно-Китайское море">
-              <div class="places__content">
-                <span class="places__title">Вьетнам</span>
-                <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
-              </div>
-            </li>
-          </ul>
-        </section>
-      </main>
-      <footer class="footer page__footer">
-        <span class="footer__copyright">&copy; 2020 Mesto Russia</span>
-      </footer>
-      <section class="popup" aria-label="Форма для редактирования">
-        <div class="popup__form">
-          <img class="popup__close" src="./images/close_icon.svg" alt="Крестик">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_type_name" type="text">
-          <input class="popup__input popup__input_type_job" type="text">
-          <button class="popup__button" type="submit">Сохранить</button>
         </div>
+        <img class="add-button" src="./images/add_button.svg" alt="Плюс">
       </section>
-    </div>
+      <section class="places page__places" aria-label="Блок с фотографиями">
+        <ul class="places__cards">
+          <li class="places__card">
+            <img class="places__image" src="./images/vladimir.jpg" alt="Колесо обозрения во Владимире">
+            <div class="places__content">
+              <span class="places__title">Владимир</span>
+              <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/budapest.jpg" alt="Трёхмерное граффити в Будапеште">
+            <div class="places__content">
+              <span class="places__title">Будапешт</span>
+              <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/kaliningrad.jpg" alt="Старинные здания в Калининграде">
+            <div class="places__content">
+              <span class="places__title">Калининград (Königsberg)</span>
+              <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/budapest2.jpg" alt="Граффити с изображением быка в Будапеште">
+            <div class="places__content">
+              <span class="places__title">Будапешт</span>
+              <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/thailand.jpg" alt="Ночной маркет в Тайланде">
+            <div class="places__content">
+              <span class="places__title">Тайланд</span>
+              <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/vietnam.jpg" alt="Вид на Южно-Китайское море">
+            <div class="places__content">
+              <span class="places__title">Вьетнам</span>
+              <img class="places__like-btn" src="./images/unlike-button.svg" alt="Сердечко">
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer page__footer">
+      <span class="footer__copyright">&copy; 2020 Mesto Russia</span>
+    </footer>
+    <section class="popup" aria-label="Форма для редактирования">
+      <div class="popup__form">
+        <img class="popup__close" src="./images/close_icon.svg" alt="Крестик">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__input popup__input_type_name" type="text">
+        <input class="popup__input popup__input_type_job" type="text">
+        <button class="popup__button" type="submit">Сохранить</button>
+      </div>
+    </section>
   <script src="./scripts/index.js"></script>
   </body>
 </html>
