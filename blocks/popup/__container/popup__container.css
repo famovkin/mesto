@@ -1,0 +1,10 @@
+.popup__container {
+  position: relative;
+  background-color:#fff;
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 36px 37px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
