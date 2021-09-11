@@ -1,4 +1,4 @@
-.profile__activity {
+.profile__job {
   color: #fff;
   font-style: normal;
   font-weight: normal;
@@ -11,7 +11,7 @@
 }
 
 @media (max-width: 768px) {
-  .profile__activity {
+  .profile__job {
     grid-column-start: 1;
     grid-column-end: -1;
     text-align: center;
@@ -19,7 +19,7 @@
 }
 
 @media (max-width: 425px) {
-  .profile__activity {
+  .profile__job {
     font-size: 14px;
   }
 }
