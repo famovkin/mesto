@@ -8,3 +8,10 @@
   border-radius: 10px;
   box-sizing: border-box;
 }
+
+@media (max-width: 468px) {
+  .popup__container {
+    padding: 25px 22px;
+    width: calc(100% - 38px);
+  }
+}

@@ -14,3 +14,11 @@
 .popup__button:hover {
   opacity: .8;
 }
+
+@media (max-width: 425px) {
+  .popup__button {
+    font-size: 14px;
+    line-height: 1.21;
+    padding-bottom: 14px;
+  }
+}
