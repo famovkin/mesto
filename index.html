@@ -78,13 +78,13 @@
       <span class="footer__copyright">&copy; 2020 Mesto Russia</span>
     </footer>
     <section class="popup" aria-label="Форма для редактирования">
-      <div class="popup__form">
+      <form class="popup__form">
         <img class="popup__close" src="./images/close_icon.svg" alt="Крестик">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input popup__input_type_name" type="text">
-        <input class="popup__input popup__input_type_job" type="text">
+        <input class="popup__input popup__input_type_name" type="text" required>
+        <input class="popup__input popup__input_type_job" type="text" required>
         <button class="popup__button" type="submit">Сохранить</button>
-      </div>
+      </form>
     </section>
   <script src="./scripts/index.js"></script>
   </body>

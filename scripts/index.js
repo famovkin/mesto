@@ -25,7 +25,6 @@ for (let i = 0; i < likeButton.length; i++) {
 }
 
 let formElement = document.querySelector('.popup__form');
-let submitButton = formElement.querySelector('.popup__button');
 let profileName = document.querySelector('.profile__name');
 let job = document.querySelector('.profile__job');
 let nameInput = formElement.querySelector('.popup__input_type_name');
@@ -41,4 +40,4 @@ jobInput.value = job.textContent;
     popupToggle();
   }
 
-submitButton.addEventListener ('click', formSubmitHandler);
+formElement.addEventListener ('submit', formSubmitHandler);
