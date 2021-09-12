@@ -1,9 +1,13 @@
 .edit-button {
+  width: 24px;
   padding: 7px;
+  right: -42px;
+  bottom: 43%;
   border: 1px solid #fff;
-  transform: translate(0, -6px);
   transition: opacity .5s;
   cursor: pointer;
+  position: absolute;
+  box-sizing: border-box;
 }
 
 .edit-button:hover {
@@ -12,7 +16,9 @@
 
 @media (max-width: 425px) {
   .edit-button {
-    width: 8px;
+    width: 19px;
     padding: 5px;
+    right: -30px;
+    bottom: 45%;
   }
 }
