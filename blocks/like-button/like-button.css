@@ -1,0 +1,29 @@
+.like-button {
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../images/like-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: opacity .5s;
+  cursor: pointer;
+}
+
+.like-button:hover {
+  opacity: .5;
+}
+
+@media (max-width: 630px) {
+  .like-button {
+    width: 32px;
+    height: 27px;
+  }
+}
+
+@media (max-width: 425px) {
+  .like-button {
+    width: 22px;
+    height: 19px;
+  }
+}
+

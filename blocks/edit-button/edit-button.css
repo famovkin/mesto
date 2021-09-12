@@ -1,4 +1,4 @@
-.profile__edit-button {
+.edit-button {
   padding: 7px;
   border: 1px solid #fff;
   transform: translate(0, -6px);
@@ -6,12 +6,12 @@
   cursor: pointer;
 }
 
-.profile__edit-button:hover {
+.edit-button:hover {
   opacity: .5;
 }
 
 @media (max-width: 425px) {
-  .profile__edit-button {
+  .edit-button {
     width: 8px;
     padding: 5px;
   }
