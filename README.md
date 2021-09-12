@@ -24,4 +24,4 @@ __Технологии:__
 * JavaScript (выбор элементов через querySelector и querySelectorAll, использование переменных, функций, цикла for, массива, слушателя событий, classList, метода toggle).
 
 __Ссылка на GitHub Pages:__
-https://famovkin.github.io/mesto/index.html
+https://famovkin.github.io/mesto/
