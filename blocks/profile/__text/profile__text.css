@@ -1,21 +1,23 @@
 .profile__text {
   display: grid;
-  grid-template-columns: minmax(189px, 294px) 24px;
+  grid-template-columns: auto 24px;
   column-gap: 18px;
   row-gap: 16px;
+  flex-basis: 336px;
 }
 
 @media (max-width: 768px) {
   .profile__text {
-    grid-template-columns: 260px 0;
+    grid-template-columns: fit-content(260px) 0;
     column-gap: 0;
     text-align: center;
+    flex-basis: 0;
   }
 }
 
 @media (max-width: 425px) {
   .profile__text {
-    grid-template-columns: 189px 0;
+    grid-template-columns: fit-content(189px) 0;
     row-gap: 14px;
   }
 }

@@ -18,7 +18,7 @@
     grid-column-end: 3;
     grid-row-start: 1;
     justify-self: flex-end;
-    transform: translate(28px, 0);
+    transform: translate(35px, 0);
   }
 }
 
@@ -26,5 +26,6 @@
   .edit-button {
     width: 18px;
     padding: 5px;
+    transform: translate(28px, 0);
   }
 }
