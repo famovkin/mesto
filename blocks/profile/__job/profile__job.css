@@ -1,5 +1,4 @@
 .profile__job {
-  max-width: 294px;
   color: #fff;
   font-style: normal;
   font-weight: normal;
@@ -11,9 +10,15 @@
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .profile__job {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
+
 @media (max-width: 425px) {
   .profile__job {
-    max-width: 189px;
     font-size: 14px;
     line-height: 1.21;
   }

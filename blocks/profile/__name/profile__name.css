@@ -1,5 +1,4 @@
 .profile__name {
-  max-width: 294px;
   color: #fff;
   font-style: normal;
   font-weight: 500;
@@ -9,18 +8,20 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  transform: translate(0, 9px);
+  transform: translate(0, 8px);
 }
 
 @media (max-width: 768px) {
   .profile__name {
     font-size: 35px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
   }
 }
 
 @media (max-width: 425px) {
   .profile__name {
-    max-width: 189px;
     font-size: 27px;
     line-height: 1.22;
   }

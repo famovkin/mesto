@@ -1,24 +1,30 @@
 .edit-button {
   width: 24px;
   padding: 7px;
-  right: -42px;
-  bottom: 43%;
   border: 1px solid #fff;
   transition: opacity .5s;
   cursor: pointer;
-  position: absolute;
   box-sizing: border-box;
+  align-self: flex-end;
 }
 
 .edit-button:hover {
   opacity: .5;
 }
 
+@media (max-width: 768px) {
+  .edit-button {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    justify-self: flex-end;
+    transform: translate(28px, 0);
+  }
+}
+
 @media (max-width: 425px) {
   .edit-button {
-    width: 19px;
+    width: 18px;
     padding: 5px;
-    right: -30px;
-    bottom: 45%;
   }
 }
