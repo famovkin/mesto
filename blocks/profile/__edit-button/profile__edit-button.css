@@ -1,19 +1,24 @@
-.edit-button {
-  width: 24px;
-  padding: 7px;
+.profile__edit-button {
+  max-height: 24px;
+  max-width: 24px;
+  background-color: #000;
+  border: 0;
   border: 1px solid #fff;
-  transition: opacity .5s;
+  padding: 7px;
   cursor: pointer;
-  box-sizing: border-box;
+  transition: opacity .5s;
   align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.edit-button:hover {
+.profile__edit-button:hover {
   opacity: .6;
 }
 
 @media (max-width: 768px) {
-  .edit-button {
+  .profile__edit-button {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -23,9 +28,8 @@
 }
 
 @media (max-width: 425px) {
-  .edit-button {
-    width: 18px;
-    padding: 5px;
+  .profile__edit-button {
+    padding: 4px;
     transform: translate(28px, 0);
   }
 }

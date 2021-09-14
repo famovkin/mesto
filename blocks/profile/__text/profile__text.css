@@ -1,6 +1,6 @@
 .profile__text {
   display: grid;
-  grid-template-columns: auto 24px;
+  grid-template-columns: auto max-content;
   column-gap: 18px;
   row-gap: 16px;
   flex-basis: 336px;
