@@ -23,10 +23,11 @@
 @import url(../blocks/profile/__edit-image/profile__edit-image.css);
 
 @import url(../blocks/places/__cards/places__cards.css);
-@import url(../blocks/places/__image/places__image.css);
-@import url(../blocks/places/__card/places__card.css);
-@import url(../blocks/places/__content/places__content.css);
-@import url(../blocks/places/__title/places__title.css);
+
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__content/card__content.css);
+@import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__image/card__image.css);
 
 @import url(../blocks/like-button/like-button.css);
 
