@@ -3,6 +3,7 @@
   border: 2px solid #fff;
   transition: opacity .5s;
   cursor: pointer;
+  border-radius: 2px;
 }
 
 .add-button:hover {
