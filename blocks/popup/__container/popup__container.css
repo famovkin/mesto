@@ -1,0 +1,10 @@
+.popup__container {
+  position: relative;
+  width: 430px;
+}
+
+@media (max-width: 468px) {
+  .popup__container {
+    width: calc(100% - 38px);
+  }
+}

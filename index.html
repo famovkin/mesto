@@ -88,15 +88,17 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <div class="popup">
-      <form class="popup__form">
-        <img class="popup__close" src="./images/close_icon.svg" alt="Крестик">
-        <div class="popup__content">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button">
+          <img class="popup__close-image" src="./images/close_icon.svg" alt="Крестик">
+        </button>
+        <form class="popup__form" name="information">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_type_name" type="text" required>
-          <input class="popup__input popup__input_type_job" type="text" required>
+          <input class="popup__input popup__input_type_name" type="text" name="name" required>
+          <input class="popup__input popup__input_type_job" type="text" name="job" required>
           <button class="popup__button" type="submit">Сохранить</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   <script src="./scripts/index.js"></script>
   </body>
