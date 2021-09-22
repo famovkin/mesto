@@ -28,5 +28,39 @@ popupOpenBtn.addEventListener('click', openPopup); // слушатель на к
 popupCloseBtn.addEventListener('click', closePopup); // слушатель на кнопке закрыть
 formElement.addEventListener('submit', formSubmitHandler); // слушатель на форме
 
+const initialCards = [
+  {
+    name: 'Владимир',
+    link: '../images/vladimir.jpg'
+  },
+  {
+    name: 'Будапешт',
+    link: '../images/budapest.jpg'
+  },
+  {
+    name: 'Калининград (Königsberg)',
+    link: '../images/kaliningrad.jpg'
+  },
+  {
+    name: 'Будапешт',
+    link: '../images/budapest2.jpg'
+  },
+  {
+    name: 'Тайланд',
+    link: '../images/thailand.jpg'
+  },
+  {
+    name: 'Вьетнам',
+    link: '../images/vietnam.jpg'
+  }
+];
 
+const cards = document.querySelector('.places__cards');
 
+initialCards.forEach((item) => {
+  const cardTemplate = document.querySelector('.card-template').content;
+  const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector('.card__image').src = item.link;
+  cardElement.querySelector('.card__title').textContent = item.name;
+  cards.append(cardElement);
+})

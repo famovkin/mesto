@@ -33,54 +33,7 @@
       </section>
       <section class="places page__places" aria-label="Блок с фотографиями">
         <ul class="places__cards">
-          <li class="card">
-            <img class="card__image" src="./images/vladimir.jpg" alt="Колесо обозрения во Владимире">
-            <div class="card__content">
-              <h2 class="card__title">Владимир</h2>
-              <button class="card__like-button" type="button">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/budapest.jpg" alt="Трёхмерное граффити в Будапеште">
-            <div class="card__content">
-              <h2 class="card__title">Будапешт</h2>
-              <button class="card__like-button" type="button">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/kaliningrad.jpg" alt="Старинные здания в Калининграде">
-            <div class="card__content">
-              <h2 class="card__title">Калининград (Königsberg)</h2>
-              <button class="card__like-button" type="button">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/budapest2.jpg" alt="Граффити с изображением быка в Будапеште">
-            <div class="card__content">
-              <h2 class="card__title">Будапешт</h2>
-              <button class="card__like-button" type="button">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/thailand.jpg" alt="Ночной маркет в Тайланде">
-            <div class="card__content">
-              <h2 class="card__title">Тайланд</h2>
-              <button class="card__like-button" type="button">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/vietnam.jpg" alt="Вид на Южно-Китайское море">
-            <div class="card__content">
-              <h2 class="card__title">Вьетнам</h2>
-              <button class="card__like-button" type="button">
-              </button>
-            </div>
-          </li>
+
         </ul>
       </section>
     </main>
@@ -100,6 +53,16 @@
         </form>
       </div>
     </div>
-  <script src="./scripts/index.js"></script>
+    <template class="card-template">
+      <li class="card">
+        <img class="card__image" >
+        <div class="card__content">
+          <h2 class="card__title"></h2>
+          <button class="card__like-button" type="button">
+          </button>
+        </div>
+      </li>
+    </template>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
