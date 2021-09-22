@@ -14,8 +14,11 @@ const jobInput = formEdit.querySelector('.popup__input_type_job'); // наход
 
 function openPopup(modal) { // функция открытия попапчика, в параметр modal передаем тип попапа
   modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
-  nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвается соответствующим инпутам
-  jobInput.value = job.textContent;
+  if (modal.classList.contains('popup_type_edit')) { // если это форма редактирования, то (читай комментарий ниже)
+    nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвается соответствующим инпутам
+    jobInput.value = job.textContent;
+  }
+
 }
 
 function closePopup(modal) { // функция закрытия попапчика, в параметр modal передаем тип попапа
