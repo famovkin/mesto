@@ -53,6 +53,19 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_type_add popup_opened">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button">
+          <img class="popup__close-image" src="./images/close_icon.svg" alt="Крестик">
+        </button>
+        <form class="popup__form popup__form_type_add" name="add_card">
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input popup__input_type_place-name" type="text" name="place-name" placeholder="Название" required>
+          <input class="popup__input popup__input_type_place-link" type="url" name="place-link" placeholder="Ссылка на картинку" required>
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <template class="card-template">
       <li class="card">
         <img class="card__image" >
