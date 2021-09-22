@@ -1,9 +1,9 @@
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
 const popupEditCloseBtn = popupEdit.querySelector('.popup__close-button'); // находим кнопку закрытия у формы редактирования
 const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // находим кнопку редактирования
-// const popupAdd = document.querySelector('.popup_type_add'); // находим элемент с классом popup_type_add
-// const popupAddCloseBtn = popupAdd.querySelector('.popup__close-button'); // находим кнопку закрытия у формы добавления карточек
-// const popupAddOpenBtn = document.querySelector('.profile__add-button'); // находим кнопку добавить карточку
+const popupAdd = document.querySelector('.popup_type_add'); // находим элемент с классом popup_type_add
+const popupAddCloseBtn = popupAdd.querySelector('.popup__close-button'); // находим кнопку закрытия у формы добавления карточек
+const popupAddOpenBtn = document.querySelector('.profile__add-button'); // находим кнопку добавить карточку
 // const popupImage = document.querySelector('.popup_type_image'); // находим элемент с классом popup_type_image
 // const popupImageCloseBtn = popupImage.querySelector('.popup__close-button'); // находим кнопку закрытия у попапа с фуллсайз фото
 const formEdit = document.querySelector('.popup__form_type_edit'); // находим форму c редактированием профиля
@@ -31,6 +31,8 @@ function formSubmitHandler(evt) { // функция сохранения зна�
 
 popupEditOpenBtn.addEventListener('click', () => openPopup(popupEdit)); // слушатель на кнопке редактировать
 popupEditCloseBtn.addEventListener('click', () => closePopup(popupEdit)); // слушатель на кнопке закрыть в попапе редактирования
+popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd)); // слушатель на кнопке добавления карточки
+popupAddCloseBtn.addEventListener('click', () => closePopup(popupAdd)); // слушатель на кнопке закрыть в попапе добавления карточки
 formEdit.addEventListener('submit', formSubmitHandler); // слушатель submit на форме редактирования
 
 const initialCards = [
