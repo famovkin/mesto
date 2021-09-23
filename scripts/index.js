@@ -4,6 +4,9 @@ const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // н�
 const popupAdd = document.querySelector('.popup_type_add'); // находим элемент с классом popup_type_add
 const popupAddCloseBtn = popupAdd.querySelector('.popup__close-button'); // находим кнопку закрытия у формы добавления карточек
 const popupAddOpenBtn = document.querySelector('.profile__add-button'); // находим кнопку добавить карточку
+const formAdd = document.querySelector('.popup_type_add') // находим форму добавления карточки
+const placeNameInput = formAdd.querySelector('.popup__input_type_place-name') // находим инпут с названием места
+const placeLinkInput = formAdd.querySelector('.popup__input_type_place-link') // находим инпут с линком картинки
 // const popupImage = document.querySelector('.popup_type_image'); // находим элемент с классом popup_type_image
 // const popupImageCloseBtn = popupImage.querySelector('.popup__close-button'); // находим кнопку закрытия у попапа с фуллсайз фото
 const formEdit = document.querySelector('.popup__form_type_edit'); // находим форму c редактированием профиля
@@ -74,3 +77,15 @@ initialCards.forEach((item) => { // обход массива, в функции
   cardElement.querySelector('.card__title').textContent = item.name; // наполняем заголовок h2 (находим по классу) берем значение из ключа name
   cards.append(cardElement); // добавляем получившийся узел в конец cards
 });
+
+function formSubmitAdd(evt) {
+  evt.preventDefault();
+  const cardTemplate = document.querySelector('.card-template').content;
+  const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector('.card__image').src = placeLinkInput.value;
+  cardElement.querySelector('.card__title').textContent = placeNameInput.value;
+  cards.prepend(cardElement);
+  closePopup(popupAdd);
+}
+
+formAdd.addEventListener('submit', formSubmitAdd);
