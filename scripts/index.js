@@ -21,7 +21,6 @@ function openPopup(modal) { // функция открытия попапчик�
     nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвается соответствующим инпутам
     jobInput.value = job.textContent;
   }
-
 }
 
 function closePopup(modal) { // функция закрытия попапчика, в параметр modal передаем тип попапа
@@ -89,3 +88,20 @@ function formSubmitAdd(evt) {
 }
 
 formAdd.addEventListener('submit', formSubmitAdd);
+
+const deleteButtons = cards.querySelectorAll('.card__delete-button');
+
+deleteButtons.forEach((item) => {
+  item.addEventListener('click', function() {
+    item.closest('.card').remove();
+  });
+});
+
+const likeButtons = cards.querySelectorAll('.card__like-button');
+
+likeButtons.forEach((item) => {
+  item.addEventListener('click', function (evt) {
+    evt.target.classList.toggle('card__like-button_type_liked');
+  });
+});
+
