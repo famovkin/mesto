@@ -3,4 +3,5 @@
   margin-bottom: 25px;
   height: 282px;
   object-fit: cover;
+  cursor: pointer;
 }
