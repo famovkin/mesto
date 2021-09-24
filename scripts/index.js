@@ -27,7 +27,7 @@ function closePopup(modal) { // функция закрытия попапчик
   modal.classList.remove('popup_opened'); // попап снова невидим из-за display: none
 }
 
-function formSubmitHandler(evt) { // функция сохранения значений из инпутов
+function formSubmitEdit(evt) { // функция сохранения значений из инпутов
   evt.preventDefault();
   profileName.textContent = nameInput.value; // h1 и p присваиваются соответствующие значения из инпутов
   job.textContent = jobInput.value;
@@ -38,7 +38,7 @@ popupEditOpenBtn.addEventListener('click', () => openPopup(popupEdit)); // сл�
 popupEditCloseBtn.addEventListener('click', () => closePopup(popupEdit)); // слушатель на кнопке закрыть в попапе редактирования
 popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd)); // слушатель на кнопке добавления карточки
 popupAddCloseBtn.addEventListener('click', () => closePopup(popupAdd)); // слушатель на кнопке закрыть в попапе добавления карточки
-formEdit.addEventListener('submit', formSubmitHandler); // слушатель submit на форме редактирования
+formEdit.addEventListener('submit', formSubmitEdit); // слушатель submit на форме редактирования
 
 const initialCards = [
   {
@@ -69,39 +69,43 @@ const initialCards = [
 
 const cards = document.querySelector('.places__cards'); // находим список карточек
 
-initialCards.forEach((item) => { // обход массива, в функции параметр item - каждый элемент массива
+function addCard(item, position = 'begin') { // функция добавления карточки, item - карточка, position - параметр, который определяет место добавления
   const cardTemplate = document.querySelector('.card-template').content; // находим шаблон карточки
-  const cardElement = cardTemplate.cloneNode(true); // клонируем шаблон карточки, параметр true готоворит, что мы клонируем вместе с содержимым
+  const cardElement = cardTemplate.cloneNode(true); // клонируем шаблон карточки, параметр true говорит, что мы клонируем вместе с содержимым
+
   cardElement.querySelector('.card__image').src = item.link; // в img (находим по классу) вставляем в атрибут src значение ключа link
   cardElement.querySelector('.card__title').textContent = item.name; // наполняем заголовок h2 (находим по классу) берем значение из ключа name
-  cards.append(cardElement); // добавляем получившийся узел в конец cards
-});
 
-function formSubmitAdd(evt) {
+  setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
+
+  if (position === 'begin') cards.prepend(cardElement); // проверка параметра position
+  if (position === 'end') cards.append(cardElement)
+}
+
+function formSubmitAdd(evt) { // функция сабмита формы по добавлению карточек
   evt.preventDefault();
-  const cardTemplate = document.querySelector('.card-template').content;
-  const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector('.card__image').src = placeLinkInput.value;
-  cardElement.querySelector('.card__title').textContent = placeNameInput.value;
-  cards.prepend(cardElement);
-  closePopup(popupAdd);
+  addCard({link: placeLinkInput.value, name: placeNameInput.value}); // второй параметр не указан, используется дефолтное значение begin
+  placeLinkInput.value = ''; // очистка инпутов
+  placeNameInput.value = '';
+  closePopup(evt.currentTarget); // закрытие формы, обработчик висит на форме, поэтому currentTarget
 }
 
 formAdd.addEventListener('submit', formSubmitAdd);
 
-const deleteButtons = cards.querySelectorAll('.card__delete-button');
+function deleteCard(evt) { // функция удаления карточки
+  const card = evt.currentTarget.closest('.card'); // ищется ближайший родитель с классом card
+  card.remove();
+}
 
-deleteButtons.forEach((item) => {
-  item.addEventListener('click', function() {
-    item.closest('.card').remove();
-  });
+function pressLike(evt) {
+  evt.currentTarget.classList.toggle('card__like-button_type_liked');
+}
+
+function setListenersToCard(card) { // функция для добавления всех слушателей на карточку
+  card.querySelector('.card__delete-button').addEventListener('click', deleteCard);
+  card.querySelector('.card__like-button').addEventListener('click', pressLike);
+}
+
+initialCards.forEach((item) => { // обход массива, в функции параметр item - каждый элемент массива
+  addCard(item, 'end'); // параметр end - элементы добавляются с помощью append
 });
-
-const likeButtons = cards.querySelectorAll('.card__like-button');
-
-likeButtons.forEach((item) => {
-  item.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('card__like-button_type_liked');
-  });
-});
-
