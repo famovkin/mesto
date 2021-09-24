@@ -43,27 +43,27 @@ formEdit.addEventListener('submit', formSubmitEdit); // слушатель submi
 const initialCards = [
   {
     name: 'Владимир',
-    link: '../images/vladimir.jpg'
+    link: './images/vladimir.jpg'
   },
   {
     name: 'Будапешт',
-    link: '../images/budapest.jpg'
+    link: './images/budapest.jpg'
   },
   {
     name: 'Калининград (Königsberg)',
-    link: '../images/kaliningrad.jpg'
+    link: './images/kaliningrad.jpg'
   },
   {
     name: 'Будапешт',
-    link: '../images/budapest2.jpg'
+    link: './images/budapest2.jpg'
   },
   {
     name: 'Тайланд',
-    link: '../images/thailand.jpg'
+    link: './images/thailand.jpg'
   },
   {
     name: 'Вьетнам',
-    link: '../images/vietnam.jpg'
+    link: './images/vietnam.jpg'
   }
 ];
 
@@ -79,7 +79,7 @@ function addCard(item, position = 'begin') { // функция добавлен�
   setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
 
   if (position === 'begin') cards.prepend(cardElement); // проверка параметра position
-  if (position === 'end') cards.append(cardElement)
+  if (position === 'end') cards.append(cardElement);
 }
 
 function formSubmitAdd(evt) { // функция сабмита формы по добавлению карточек
