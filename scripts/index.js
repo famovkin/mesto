@@ -1,14 +1,11 @@
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
-const popupEditCloseBtn = popupEdit.querySelector('.popup__close-button'); // находим кнопку закрытия у формы редактирования
 const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // находим кнопку редактирования
 const popupAdd = document.querySelector('.popup_type_add'); // находим элемент с классом popup_type_add
-const popupAddCloseBtn = popupAdd.querySelector('.popup__close-button'); // находим кнопку закрытия у формы добавления карточек
 const popupAddOpenBtn = document.querySelector('.profile__add-button'); // находим кнопку добавить карточку
 const formAdd = document.querySelector('.popup_type_add') // находим форму добавления карточки
 const placeNameInput = formAdd.querySelector('.popup__input_type_place-name') // находим инпут с названием места
 const placeLinkInput = formAdd.querySelector('.popup__input_type_place-link') // находим инпут с линком картинки
 const popupImage = document.querySelector('.popup_type_image'); // находим элемент с классом popup_type_image
-const popupImageCloseBtn = popupImage.querySelector('.popup__close-button'); // находим кнопку закрытия у попапа с фуллсайз фото
 const formEdit = document.querySelector('.popup__form_type_edit'); // находим форму c редактированием профиля
 const profileName = document.querySelector('.profile__name'); // находим заголовок с именем
 const job = document.querySelector('.profile__job'); // находим параграф с работой
@@ -22,6 +19,8 @@ function openPopup(modal) { // функция открытия попапа, в 
     nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвоится соответствующим инпутам
     jobInput.value = job.textContent;
   }
+
+  modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal)); // слушатель на кнопке закрытия
 }
 
 function closePopup(modal) { // функция закрытия попапа
@@ -38,13 +37,6 @@ function formSubmitEdit(evt) { // функция сохранения значе
 }
 
 popupEditOpenBtn.addEventListener('click', () => openPopup(popupEdit)); // слушатель на кнопке редактировать
-popupEditCloseBtn.addEventListener('click', () => closePopup(popupEdit)); // слушатель на кнопке закрыть в попапе редактирования
-
-popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd)); // слушатель на кнопке добавления карточки
-popupAddCloseBtn.addEventListener('click', () => closePopup(popupAdd)); // слушатель на кнопке закрыть в попапе добавления карточки
-
-popupImageCloseBtn.addEventListener('click', () => closePopup(popupImage)); // слушатель на кнопке закрыть в попапе с фотографией
-
 formEdit.addEventListener('submit', formSubmitEdit); // слушатель submit на форме редактирования
 
 const initialCards = [
@@ -99,6 +91,7 @@ function formSubmitAdd(evt) { // функция submit формы по доба�
   closePopup(formAdd); // закрытие формы
 }
 
+popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd)); // слушатель на кнопке добавления карточки
 formAdd.addEventListener('submit', formSubmitAdd); // слушатель на форме по добавлению карточек
 
 function deleteCard(evt) { // функция удаления карточки
