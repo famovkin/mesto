@@ -7,8 +7,8 @@ const popupAddOpenBtn = document.querySelector('.profile__add-button'); // на�
 const formAdd = document.querySelector('.popup_type_add') // находим форму добавления карточки
 const placeNameInput = formAdd.querySelector('.popup__input_type_place-name') // находим инпут с названием места
 const placeLinkInput = formAdd.querySelector('.popup__input_type_place-link') // находим инпут с линком картинки
-// const popupImage = document.querySelector('.popup_type_image'); // находим элемент с классом popup_type_image
-// const popupImageCloseBtn = popupImage.querySelector('.popup__close-button'); // находим кнопку закрытия у попапа с фуллсайз фото
+const popupImage = document.querySelector('.popup_type_image'); // находим элемент с классом popup_type_image
+const popupImageCloseBtn = popupImage.querySelector('.popup__close-button'); // находим кнопку закрытия у попапа с фуллсайз фото
 const formEdit = document.querySelector('.popup__form_type_edit'); // находим форму c редактированием профиля
 const profileName = document.querySelector('.profile__name'); // находим заголовок с именем
 const job = document.querySelector('.profile__job'); // находим параграф с работой
@@ -38,6 +38,7 @@ popupEditOpenBtn.addEventListener('click', () => openPopup(popupEdit)); // сл�
 popupEditCloseBtn.addEventListener('click', () => closePopup(popupEdit)); // слушатель на кнопке закрыть в попапе редактирования
 popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd)); // слушатель на кнопке добавления карточки
 popupAddCloseBtn.addEventListener('click', () => closePopup(popupAdd)); // слушатель на кнопке закрыть в попапе добавления карточки
+popupImageCloseBtn.addEventListener('click', () => closePopup(popupImage));
 formEdit.addEventListener('submit', formSubmitEdit); // слушатель submit на форме редактирования
 
 const initialCards = [
@@ -104,8 +105,15 @@ function pressLike(evt) {
 function setListenersToCard(card) { // функция для добавления всех слушателей на карточку
   card.querySelector('.card__delete-button').addEventListener('click', deleteCard);
   card.querySelector('.card__like-button').addEventListener('click', pressLike);
+  card.querySelector('.card__image').addEventListener('click', openImage);
 }
 
 initialCards.forEach((item) => { // обход массива, в функции параметр item - каждый элемент массива
   addCard(item, 'end'); // параметр end - элементы добавляются с помощью append
 });
+
+function openImage(evt) {
+  openPopup(popupImage);
+  popupImage.querySelector('.popup__heading').textContent = evt.target.parentElement.querySelector('.card__title').textContent;
+  popupImage.querySelector('.popup__image').src = evt.target.getAttribute('src');
+}
