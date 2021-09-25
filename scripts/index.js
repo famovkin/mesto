@@ -15,30 +15,36 @@ const job = document.querySelector('.profile__job'); // находим пара�
 const nameInput = formEdit.querySelector('.popup__input_type_name'); // находим инпут с именем
 const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
 
-function openPopup(modal) { // функция открытия попапчика, в параметр modal передаем тип попапа
+function openPopup(modal) { // функция открытия попапа, в параметр modal передаем тип попапа
   modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
-  if (modal.classList.contains('popup_type_edit')) { // если это форма редактирования, то (читай комментарий ниже)
-    nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвается соответствующим инпутам
+
+  if (modal.classList.contains('popup_type_edit')) { // если это форма редактирования, то читай ниже
+    nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвоится соответствующим инпутам
     jobInput.value = job.textContent;
   }
 }
 
-function closePopup(modal) { // функция закрытия попапчика, в параметр modal передаем тип попапа
-  modal.classList.remove('popup_opened'); // попап снова невидим из-за display: none
+function closePopup(modal) { // функция закрытия попапа
+  modal.classList.remove('popup_opened'); // удаление класса, который отображает попап
 }
 
 function formSubmitEdit(evt) { // функция сохранения значений из инпутов
   evt.preventDefault();
+
   profileName.textContent = nameInput.value; // h1 и p присваиваются соответствующие значения из инпутов
   job.textContent = jobInput.value;
-  closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редатирования
+
+  closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редактирования
 }
 
 popupEditOpenBtn.addEventListener('click', () => openPopup(popupEdit)); // слушатель на кнопке редактировать
 popupEditCloseBtn.addEventListener('click', () => closePopup(popupEdit)); // слушатель на кнопке закрыть в попапе редактирования
+
 popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd)); // слушатель на кнопке добавления карточки
 popupAddCloseBtn.addEventListener('click', () => closePopup(popupAdd)); // слушатель на кнопке закрыть в попапе добавления карточки
-popupImageCloseBtn.addEventListener('click', () => closePopup(popupImage));
+
+popupImageCloseBtn.addEventListener('click', () => closePopup(popupImage)); // слушатель на кнопке закрыть в попапе с фотографией
+
 formEdit.addEventListener('submit', formSubmitEdit); // слушатель submit на форме редактирования
 
 const initialCards = [
@@ -71,11 +77,11 @@ const initialCards = [
 const cards = document.querySelector('.places__cards'); // находим список карточек
 
 function addCard(item, position = 'begin') { // функция добавления карточки, item - карточка, position - параметр, который определяет место добавления
-  const cardTemplate = document.querySelector('.card-template').content; // находим шаблон карточки
+  const cardTemplate = document.querySelector('.card-template').content; // получаем содержимое шаблона через свойство content
   const cardElement = cardTemplate.cloneNode(true); // клонируем шаблон карточки, параметр true говорит, что мы клонируем вместе с содержимым
 
-  cardElement.querySelector('.card__image').src = item.link; // в img (находим по классу) вставляем в атрибут src значение ключа link
-  cardElement.querySelector('.card__title').textContent = item.name; // наполняем заголовок h2 (находим по классу) берем значение из ключа name
+  cardElement.querySelector('.card__image').src = item.link; // в img вставляем в атрибут src значение ключа link
+  cardElement.querySelector('.card__title').textContent = item.name; // наполняем заголовок h2 берем значение из ключа name
 
   setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
 
@@ -83,37 +89,39 @@ function addCard(item, position = 'begin') { // функция добавлен�
   if (position === 'end') cards.append(cardElement);
 }
 
-function formSubmitAdd(evt) { // функция сабмита формы по добавлению карточек
+function formSubmitAdd(evt) { // функция submit формы по добавлению карточек
   evt.preventDefault();
+
   addCard({link: placeLinkInput.value, name: placeNameInput.value}); // второй параметр не указан, используется дефолтное значение begin
+
   placeLinkInput.value = ''; // очистка инпутов
   placeNameInput.value = '';
-  closePopup(evt.currentTarget); // закрытие формы, обработчик висит на форме, поэтому currentTarget
+  closePopup(formAdd); // закрытие формы
 }
 
-formAdd.addEventListener('submit', formSubmitAdd);
+formAdd.addEventListener('submit', formSubmitAdd); // слушатель на форме по добавлению карточек
 
 function deleteCard(evt) { // функция удаления карточки
   const card = evt.currentTarget.closest('.card'); // ищется ближайший родитель с классом card
   card.remove();
 }
 
-function pressLike(evt) {
+function pressLike(evt) { // функция лайка
   evt.currentTarget.classList.toggle('card__like-button_type_liked');
 }
 
-function setListenersToCard(card) { // функция для добавления всех слушателей на карточку
+function setListenersToCard(card) { // функция добавления всех слушателей на карточку
   card.querySelector('.card__delete-button').addEventListener('click', deleteCard);
   card.querySelector('.card__like-button').addEventListener('click', pressLike);
   card.querySelector('.card__image').addEventListener('click', openImage);
 }
 
+function openImage(evt) { // функция открытия фото из карточки
+  openPopup(popupImage);
+  popupImage.querySelector('.popup__heading').textContent = evt.target.parentElement.querySelector('.card__title').textContent; // вставляем текстовое содержимое h2 в попап
+  popupImage.querySelector('.popup__image').src = evt.target.getAttribute('src'); // вставляем ссылку на фото в попап
+}
+
 initialCards.forEach((item) => { // обход массива, в функции параметр item - каждый элемент массива
   addCard(item, 'end'); // параметр end - элементы добавляются с помощью append
 });
-
-function openImage(evt) {
-  openPopup(popupImage);
-  popupImage.querySelector('.popup__heading').textContent = evt.target.parentElement.querySelector('.card__title').textContent;
-  popupImage.querySelector('.popup__image').src = evt.target.getAttribute('src');
-}
