@@ -11,33 +11,7 @@ const profileName = document.querySelector('.profile__name'); // находим 
 const job = document.querySelector('.profile__job'); // находим параграф с работой
 const nameInput = formEdit.querySelector('.popup__input_type_name'); // находим инпут с именем
 const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
-
-function openPopup(modal) { // функция открытия попапа, в параметр modal передаем тип попапа
-  modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
-
-  if (modal.classList.contains('popup_type_edit')) { // если это форма редактирования, то читай ниже
-    nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвоится соответствующим инпутам
-    jobInput.value = job.textContent;
-  }
-
-  modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal)); // слушатель на кнопке закрытия
-}
-
-function closePopup(modal) { // функция закрытия попапа
-  modal.classList.remove('popup_opened'); // удаление класса, который отображает попап
-}
-
-function formSubmitEdit(evt) { // функция сохранения значений из инпутов
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value; // h1 и p присваиваются соответствующие значения из инпутов
-  job.textContent = jobInput.value;
-
-  closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редактирования
-}
-
-popupEditOpenBtn.addEventListener('click', () => openPopup(popupEdit)); // слушатель на кнопке редактировать
-formEdit.addEventListener('submit', formSubmitEdit); // слушатель submit на форме редактирования
+const cards = document.querySelector('.places__cards'); // находим список карточек
 
 const initialCards = [
   {
@@ -66,33 +40,38 @@ const initialCards = [
   }
 ];
 
-const cards = document.querySelector('.places__cards'); // находим список карточек
 
-function addCard(item, position = 'begin') { // функция добавления карточки, item - карточка, position - параметр, который определяет место добавления
-  const cardTemplate = document.querySelector('.card-template').content; // получаем содержимое шаблона через свойство content
-  const cardElement = cardTemplate.cloneNode(true); // клонируем шаблон карточки, параметр true говорит, что мы клонируем вместе с содержимым
-
-  cardElement.querySelector('.card__image').src = item.link; // в img вставляем в атрибут src значение ключа link
-  cardElement.querySelector('.card__title').textContent = item.name; // наполняем заголовок h2 берем значение из ключа name
-
-  setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
-
-  if (position === 'begin') cards.prepend(cardElement); // проверка параметра position
-  if (position === 'end') cards.append(cardElement);
+function closePopup(modal) { // функция закрытия попапа
+  modal.classList.remove('popup_opened'); // удаление класса, который отображает попап
 }
 
-function formSubmitAdd(evt) { // функция submit формы по добавлению карточек
-  evt.preventDefault();
+function openPopup(modal) { // функция открытия попапа, в параметр modal передаем тип попапа
+  modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
 
-  addCard({link: placeLinkInput.value, name: placeNameInput.value}); // второй параметр не указан, используется дефолтное значение begin
+  if (modal.classList.contains('popup_type_edit')) { // если это форма редактирования, то читай ниже
+    nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвоится соответствующим инпутам
+    jobInput.value = job.textContent;
+  }
 
-  placeLinkInput.value = ''; // очистка инпутов
-  placeNameInput.value = '';
-  closePopup(formAdd); // закрытие формы
+  modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal)); // слушатель на кнопке закрытия
 }
 
-popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd)); // слушатель на кнопке добавления карточки
-formAdd.addEventListener('submit', formSubmitAdd); // слушатель на форме по добавлению карточек
+function addListenerToOpenModal(button, modal) { // функция добавления слушателя для открытия попапов
+  button.addEventListener('click', () => openPopup(modal)); // button - на что вешается слушатель, modal - какой попап открывать
+}
+
+addListenerToOpenModal(popupAddOpenBtn, popupAdd); // вешаем слушатели для открытия попапов
+addListenerToOpenModal(popupEditOpenBtn, popupEdit);
+
+function addListenerToSubmitForm(form, submitFunc) { // фукнция добавления слушателя для submit формы
+  form.addEventListener('submit', submitFunc); // form - сама форма, submitFunc - функция, которая выполнится
+}
+
+function openImage(evt) { // функция открытия фото из карточки
+  openPopup(popupImage);
+  popupImage.querySelector('.popup__heading').textContent = evt.target.parentElement.querySelector('.card__title').textContent; // вставляем текстовое содержимое h2 в попап
+  popupImage.querySelector('.popup__image').src = evt.target.getAttribute('src'); // вставляем ссылку на фото в попап
+}
 
 function deleteCard(evt) { // функция удаления карточки
   const card = evt.currentTarget.closest('.card'); // ищется ближайший родитель с классом card
@@ -109,11 +88,40 @@ function setListenersToCard(card) { // функция добавления вс�
   card.querySelector('.card__image').addEventListener('click', openImage);
 }
 
-function openImage(evt) { // функция открытия фото из карточки
-  openPopup(popupImage);
-  popupImage.querySelector('.popup__heading').textContent = evt.target.parentElement.querySelector('.card__title').textContent; // вставляем текстовое содержимое h2 в попап
-  popupImage.querySelector('.popup__image').src = evt.target.getAttribute('src'); // вставляем ссылку на фото в попап
+function addCard(item, position = 'begin') { // функция добавления карточки, item - карточка, position - параметр, который определяет место добавления
+  const cardTemplate = document.querySelector('.card-template').content; // получаем содержимое шаблона через свойство content
+  const cardElement = cardTemplate.cloneNode(true); // клонируем шаблон карточки, параметр true говорит, что мы клонируем вместе с содержимым
+
+  cardElement.querySelector('.card__image').src = item.link; // в img вставляем в атрибут src значение ключа link
+  cardElement.querySelector('.card__title').textContent = item.name; // наполняем заголовок h2 берем значение из ключа name
+
+  setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
+
+  if (position === 'begin') cards.prepend(cardElement); // проверка параметра position
+  if (position === 'end') cards.append(cardElement);
 }
+
+function submitFormEdit(evt) { // функция сохранения значений из инпутов
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value; // h1 и p присваиваются соответствующие значения из инпутов
+  job.textContent = jobInput.value;
+
+  closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редактирования
+}
+
+function submitFormAdd(evt) { // функция submit формы по добавлению карточек
+  evt.preventDefault();
+
+  addCard({link: placeLinkInput.value, name: placeNameInput.value}); // второй параметр не указан, используется дефолтное значение begin
+
+  placeLinkInput.value = ''; // очистка инпутов
+  placeNameInput.value = '';
+  closePopup(formAdd); // закрытие формы
+}
+
+addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушатели для submit форм
+addListenerToSubmitForm(formEdit, submitFormEdit);
 
 initialCards.forEach((item) => { // обход массива, в функции параметр item - каждый элемент массива
   addCard(item, 'end'); // параметр end - элементы добавляются с помощью append
