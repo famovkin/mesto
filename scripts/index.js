@@ -70,6 +70,7 @@ function openImage(evt) { // функция открытия фото из ка�
   openPopup(popupImage);
   popupImage.querySelector('.popup__heading').textContent = evt.target.parentElement.querySelector('.card__title').textContent; // вставляем текстовое содержимое h2 в попап
   popupImage.querySelector('.popup__image').src = evt.target.getAttribute('src'); // вставляем ссылку на фото в попап
+  popupImage.querySelector('.popup__image').alt = evt.target.parentElement.querySelector('.card__title').textContent; // вставляем текстовое содержимое alt изображения
 }
 
 function deleteCard(evt) { // функция удаления карточки
