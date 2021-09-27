@@ -47,12 +47,6 @@ function closePopup(modal) { // функция закрытия попапа
 
 function openPopup(modal) { // функция открытия попапа, в параметр modal передаем тип попапа
   modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
-
-  if (modal.classList.contains('popup_type_edit')) { // если это форма редактирования, то читай ниже
-    nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвоится соответствующим инпутам
-    jobInput.value = job.textContent;
-  }
-
   modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal)); // слушатель на кнопке закрытия
 }
 
@@ -61,7 +55,12 @@ function addListenerToOpenModal(button, modal) { // функция добавл�
 }
 
 addListenerToOpenModal(popupAddOpenBtn, popupAdd); // вешаем слушатели для открытия попапов
-addListenerToOpenModal(popupEditOpenBtn, popupEdit);
+
+popupEditOpenBtn.addEventListener('click', () => {
+  openPopup(popupEdit);
+  nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвоится соответствующим инпутам
+  jobInput.value = job.textContent;
+});
 
 function addListenerToSubmitForm(form, submitFunc) { // фукнция добавления слушателя для submit формы
   form.addEventListener('submit', submitFunc); // form - сама форма, submitFunc - функция, которая выполнится
