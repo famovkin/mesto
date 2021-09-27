@@ -88,17 +88,22 @@ function setListenersToCard(card) { // функция добавления вс�
   card.querySelector('.card__image').addEventListener('click', openImage);
 }
 
-function addCard(item, position = 'begin') { // функция добавления карточки, item - карточка, position - параметр, который определяет место добавления
-  const cardTemplate = document.querySelector('.card-template').content; // получаем содержимое шаблона через свойство content
-  const cardElement = cardTemplate.cloneNode(true); // клонируем шаблон карточки, параметр true говорит, что мы клонируем вместе с содержимым
+function createCard(name, link) { // функция создания карточки
+  // клонируем шаблон карточки, параметр true говорит, что мы клонируем вместе с содержимым
+  // получаем содержимое шаблона через свойство content
+  const cardElement = document.querySelector('.card-template').content.cloneNode(true);
 
-  cardElement.querySelector('.card__image').src = item.link; // в img вставляем в атрибут src значение ключа link
-  cardElement.querySelector('.card__title').textContent = item.name; // наполняем заголовок h2 берем значение из ключа name
+  cardElement.querySelector('.card__title').textContent = name; // наполняем заголовок h2 из параметра name
+  cardElement.querySelector('.card__image').src = link; // в img вставляем в атрибут src параметр link
 
   setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
 
-  if (position === 'begin') cards.prepend(cardElement); // проверка параметра position
-  if (position === 'end') cards.append(cardElement);
+  return cardElement; // возвращаем полученную карточку
+}
+
+function addCard(container, cardElement, position = 'begin') { // функция добавления карточки в контейнер
+  if (position === 'begin') container.prepend(cardElement); // проверка параметра position
+  if (position == 'end') container.append(cardElement);
 }
 
 function submitFormEdit(evt) { // функция сохранения значений из инпутов
@@ -113,16 +118,15 @@ function submitFormEdit(evt) { // функция сохранения значе
 function submitFormAdd(evt) { // функция submit формы по добавлению карточек
   evt.preventDefault();
 
-  addCard({link: placeLinkInput.value, name: placeNameInput.value}); // второй параметр не указан, используется дефолтное значение begin
+  addCard(cards, createCard(placeNameInput.value, placeLinkInput.value)); // второй параметр не указан, используется дефолтное значение begin
 
-  placeLinkInput.value = ''; // очистка инпутов
-  placeNameInput.value = '';
+  evt.target.reset(); // очистка инпутов
   closePopup(formAdd); // закрытие формы
 }
 
 addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушатели для submit форм
 addListenerToSubmitForm(formEdit, submitFormEdit);
 
-initialCards.forEach((item) => { // обход массива, в функции параметр item - каждый элемент массива
-  addCard(item, 'end'); // параметр end - элементы добавляются с помощью append
+initialCards.forEach((item) => {
+  addCard(cards, createCard(item.name, item.link), 'end');
 });
