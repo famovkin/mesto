@@ -47,8 +47,15 @@ function closePopup(modal) { // функция закрытия попапа
 
 function openPopup(modal) { // функция открытия попапа, в параметр modal передаем тип попапа
   modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
-  modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal)); // слушатель на кнопке закрытия
 }
+
+function addListenerToCloseModal (modal) { // функция добавления слушателя для закрытия попапа
+  modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal));
+}
+
+addListenerToCloseModal(popupEdit);
+addListenerToCloseModal(popupAdd);
+addListenerToCloseModal(popupImage);
 
 function addListenerToOpenModal(button, modal) { // функция добавления слушателя для открытия попапов
   button.addEventListener('click', () => openPopup(modal)); // button - на что вешается слушатель, modal - какой попап открывать
