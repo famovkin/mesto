@@ -40,7 +40,6 @@ const initialCards = [
   }
 ];
 
-
 function closePopup(modal) { // функция закрытия попапа
   modal.classList.remove('popup_opened'); // удаление класса, который отображает попап
 }
@@ -49,13 +48,16 @@ function openPopup(modal) { // функция открытия попапа, в 
   modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
 }
 
-function addListenerToCloseModal (modal) { // функция добавления слушателя для закрытия попапа
+function addListenersToCloseModal (modal) { // функция добавления слушателя для закрытия попапа
   modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal));
+  modal.addEventListener('click', (evt) => {
+    if (evt.target == evt.currentTarget) closePopup(evt.target);
+  })
 }
 
-addListenerToCloseModal(popupEdit);
-addListenerToCloseModal(popupAdd);
-addListenerToCloseModal(popupImage);
+addListenersToCloseModal(popupEdit);
+addListenersToCloseModal(popupAdd);
+addListenersToCloseModal(popupImage);
 
 function addListenerToOpenModal(button, modal) { // функция добавления слушателя для открытия попапов
   button.addEventListener('click', () => openPopup(modal)); // button - на что вешается слушатель, modal - какой попап открывать
