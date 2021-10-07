@@ -1,7 +1,7 @@
 .popup__button {
   background-color: #000;
   border-radius: 2px;
-  border: 0;
+  border: 1px solid #000;
   color: #fff;
   font-style: normal;
   font-weight: normal;
