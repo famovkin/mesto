@@ -40,12 +40,19 @@ const initialCards = [
   }
 ];
 
+function setListenerToEscClose (modal) {
+  window.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') closePopup(modal);
+  });
+}
+
 function closePopup(modal) { // функция закрытия попапа
   modal.classList.remove('popup_opened'); // удаление класса, который отображает попап
 }
 
 function openPopup(modal) { // функция открытия попапа, в параметр modal передаем тип попапа
   modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
+  setListenerToEscClose(modal);
 }
 
 function addListenersToCloseModal (modal) { // функция добавления слушателя для закрытия попапа
