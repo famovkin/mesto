@@ -1,3 +1,5 @@
+import { initialCards } from "./cards-array.js";
+
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
 const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // находим кнопку редактирования
 const popupAdd = document.querySelector('.popup_type_add'); // находим элемент с классом popup_type_add
@@ -12,33 +14,6 @@ const job = document.querySelector('.profile__job'); // находим пара�
 const nameInput = formEdit.querySelector('.popup__input_type_name'); // находим инпут с именем
 const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
 const cards = document.querySelector('.places__cards'); // находим список карточек
-
-const initialCards = [
-  {
-    name: 'Владимир',
-    link: './images/vladimir.jpg'
-  },
-  {
-    name: 'Будапешт',
-    link: './images/budapest.jpg'
-  },
-  {
-    name: 'Калининград (Königsberg)',
-    link: './images/kaliningrad.jpg'
-  },
-  {
-    name: 'Будапешт',
-    link: './images/budapest2.jpg'
-  },
-  {
-    name: 'Тайланд',
-    link: './images/thailand.jpg'
-  },
-  {
-    name: 'Вьетнам',
-    link: './images/vietnam.jpg'
-  }
-];
 
 function setListenerToEscClose (modal) {
   window.addEventListener('keydown', (evt) => {
