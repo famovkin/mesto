@@ -37,7 +37,7 @@ function openPopup(modal) { // функция открытия попапа, в 
 
 function addListenersToCloseModal (modal) { // функция добавления слушателя для закрытия попапа
   modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal));
-  modal.addEventListener('click', (evt) => {
+  modal.addEventListener('mousedown', (evt) => {
     if (evt.target == evt.currentTarget) closePopup(evt.target);
   })
 }
