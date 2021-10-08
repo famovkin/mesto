@@ -116,6 +116,7 @@ function submitFormAdd(evt) { // функция submit формы по доба�
   addCard(cards, createCard(placeNameInput.value, placeLinkInput.value)); // второй параметр не указан, используется дефолтное значение begin
 
   evt.target.reset(); // очистка инпутов
+  evt.target.querySelector('.popup__button').setAttribute('disabled', ''); // отключаем кнопку
   closePopup(formAdd); // закрытие формы
 }
 
