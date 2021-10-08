@@ -1,5 +1,6 @@
 import { initialCards } from "./cards-array.js";
 
+const ESC_CODE = 'Escape';
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
 const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // находим кнопку редактирования
 const popupAdd = document.querySelector('.popup_type_add'); // находим элемент с классом popup_type_add
@@ -15,19 +16,21 @@ const nameInput = formEdit.querySelector('.popup__input_type_name'); // нахо
 const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
 const cards = document.querySelector('.places__cards'); // находим список карточек
 
-function setListenerToEscClose (modal) {
-  window.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') closePopup(modal);
-  });
+function closeByEsc(evt) {
+  if (evt.key === ESC_CODE) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 }
 
 function closePopup(modal) { // функция закрытия попапа
   modal.classList.remove('popup_opened'); // удаление класса, который отображает попап
+  window.removeEventListener('keydown', closeByEsc);
 }
 
 function openPopup(modal) { // функция открытия попапа, в параметр modal передаем тип попапа
   modal.classList.add('popup_opened'); // попап становится видимым из-за display: flex
-  setListenerToEscClose(modal);
+  window.addEventListener('keydown', closeByEsc);
 
   enableValidation(config);
 }
