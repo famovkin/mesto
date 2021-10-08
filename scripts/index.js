@@ -89,6 +89,7 @@ function createCard(name, link) { // функция создания карто�
 
   cardElement.querySelector('.card__title').textContent = name; // наполняем заголовок h2 из параметра name
   cardElement.querySelector('.card__image').src = link; // в img вставляем в атрибут src параметр link
+  cardElement.querySelector('.card__image').alt = name; // добавляем alt для изображения
 
   setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
 
