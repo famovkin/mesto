@@ -1,4 +1,5 @@
 import { initialCards } from './cards-array.js';
+import Card from './Card.js';
 
 const ESC_CODE = 'Escape';
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
@@ -128,3 +129,10 @@ addListenerToSubmitForm(formEdit, submitFormEdit);
 // });
 
 enableValidation(config);
+
+initialCards.forEach((item) => {
+  const card = new Card (item, '.card-template');
+  const cardElement = card.generateCard();
+
+  document.querySelector('.places__cards').append(cardElement);
+});
