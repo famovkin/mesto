@@ -114,7 +114,9 @@ function submitFormEdit(evt) { // функция сохранения значе
 function submitFormAdd(evt) { // функция submit формы по добавлению карточек
   evt.preventDefault();
 
-  addCard(cards, createCard(placeNameInput.value, placeLinkInput.value)); // второй параметр не указан, используется дефолтное значение begin
+  const card = new Card ({name: placeNameInput.value, link: placeLinkInput.value}, '.card-template');
+  const cardElement = card.generateCard();
+  cards.prepend(cardElement);
 
   evt.target.reset(); // очистка инпутов
   evt.target.querySelector('.popup__button').setAttribute('disabled', ''); // отключаем кнопку
@@ -134,5 +136,5 @@ initialCards.forEach((item) => {
   const card = new Card (item, '.card-template');
   const cardElement = card.generateCard();
 
-  document.querySelector('.places__cards').append(cardElement);
+  cards.append(cardElement);
 });
