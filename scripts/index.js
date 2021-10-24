@@ -1,5 +1,7 @@
 import { initialCards } from './cards-array.js';
+import { config } from './config.js'
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const ESC_CODE = 'Escape';
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
@@ -130,11 +132,15 @@ addListenerToSubmitForm(formEdit, submitFormEdit);
 //   addCard(cards, createCard(item.name, item.link), 'end');
 // });
 
-enableValidation(config);
-
 initialCards.forEach((item) => {
   const card = new Card (item, '.card-template');
   const cardElement = card.generateCard();
 
   cards.append(cardElement);
 });
+
+const validatorForFormEdit = new FormValidator (config, formEdit);
+validatorForFormEdit.enableValidation();
+
+const validatorForFormAdd =  new FormValidator (config, formAdd);
+validatorForFormAdd.enableValidation();
