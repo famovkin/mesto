@@ -63,47 +63,6 @@ function addListenerToSubmitForm(form, submitFunc) { // фукнция доба�
   form.addEventListener('submit', submitFunc); // form - сама форма, submitFunc - функция, которая выполнится
 }
 
-// function openImage(evt) { // функция открытия фото из карточки
-//   openPopup(popupImage);
-//   popupImage.querySelector('.popup__heading').textContent = evt.target.parentElement.querySelector('.card__title').textContent; // вставляем текстовое содержимое h2 в попап
-//   popupImage.querySelector('.popup__image').src = evt.target.getAttribute('src'); // вставляем ссылку на фото в попап
-//   popupImage.querySelector('.popup__image').alt = evt.target.parentElement.querySelector('.card__title').textContent; // вставляем текстовое содержимое alt изображения
-// }
-
-// function deleteCard(evt) { // функция удаления карточки
-//   const card = evt.currentTarget.closest('.card'); // ищется ближайший родитель с классом card
-//   card.remove();
-// }
-
-// function pressLike(evt) { // функция лайка
-//   evt.currentTarget.classList.toggle('card__like-button_type_liked');
-// }
-
-// function setListenersToCard(card) { // функция добавления всех слушателей на карточку
-//   card.querySelector('.card__delete-button').addEventListener('click', deleteCard);
-//   card.querySelector('.card__like-button').addEventListener('click', pressLike);
-//   card.querySelector('.card__image').addEventListener('click', openImage);
-// }
-
-// function createCard(name, link) { // функция создания карточки
-//   // клонируем шаблон карточки, параметр true говорит, что мы клонируем вместе с содержимым
-//   // получаем содержимое шаблона через свойство content
-//   const cardElement = document.querySelector('.card-template').content.cloneNode(true);
-
-//   cardElement.querySelector('.card__title').textContent = name; // наполняем заголовок h2 из параметра name
-//   cardElement.querySelector('.card__image').src = link; // в img вставляем в атрибут src параметр link
-//   cardElement.querySelector('.card__image').alt = name; // добавляем alt для изображения
-
-//   setListenersToCard(cardElement); // вызываем функцию, которая вешает слушатели на кнопки карточки
-
-//   return cardElement; // возвращаем полученную карточку
-// }
-
-// function addCard(container, cardElement, position = 'begin') { // функция добавления карточки в контейнер
-//   if (position === 'begin') container.prepend(cardElement); // проверка параметра position
-//   if (position == 'end') container.append(cardElement);
-// }
-
 function submitFormEdit(evt) { // функция сохранения значений из инпутов
   evt.preventDefault();
 
@@ -127,10 +86,6 @@ function submitFormAdd(evt) { // функция submit формы по доба�
 
 addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушатели для submit форм
 addListenerToSubmitForm(formEdit, submitFormEdit);
-
-// initialCards.forEach((item) => {
-//   addCard(cards, createCard(item.name, item.link), 'end');
-// });
 
 initialCards.forEach((item) => {
   const card = new Card (item, '.card-template');
