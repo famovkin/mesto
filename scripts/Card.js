@@ -32,6 +32,7 @@ export default class Card {
 
   _handleImageClick() {
     document.querySelector('.popup_type_image').classList.add('popup_opened');
+    document.querySelector('.popup__image').src = this._link;
   }
 
   _handleLikeBtnClick() {
