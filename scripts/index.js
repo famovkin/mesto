@@ -72,12 +72,21 @@ function submitFormEdit(evt) { // функция сохранения значе
   closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редактирования
 }
 
+function generateAndAddCard(cardInfo, position) {
+  const card = new Card (cardInfo, '.card-template');
+  const cardElement = card.generateCard();
+
+  if (position === 'begin') {
+    cards.prepend(cardElement);
+  } else {
+    cards.append(cardElement);
+  }
+}
+
 function submitFormAdd(evt) { // функция submit формы по добавлению карточек
   evt.preventDefault();
 
-  const card = new Card ({name: placeNameInput.value, link: placeLinkInput.value}, '.card-template');
-  const cardElement = card.generateCard();
-  cards.prepend(cardElement);
+  generateAndAddCard({name: placeNameInput.value, link: placeLinkInput.value}, 'begin');
 
   evt.target.reset(); // очистка инпутов
   evt.target.querySelector('.popup__button').setAttribute('disabled', ''); // отключаем кнопку
@@ -88,10 +97,7 @@ addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушате�
 addListenerToSubmitForm(formEdit, submitFormEdit);
 
 initialCards.forEach((item) => {
-  const card = new Card (item, '.card-template');
-  const cardElement = card.generateCard();
-
-  cards.append(cardElement);
+  generateAndAddCard(item);
 });
 
 const validatorForFormEdit = new FormValidator (config, formEdit);
