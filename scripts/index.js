@@ -18,6 +18,8 @@ const job = document.querySelector('.profile__job'); // находим пара�
 const nameInput = formEdit.querySelector('.popup__input_type_name'); // находим инпут с именем
 const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
 const cards = document.querySelector('.places__cards'); // находим список карточек
+const headingInPopupImage = popupImage.querySelector('.popup__heading');
+const imageInPopupImage = popupImage.querySelector('.popup__image');
 
 function closeByEsc(evt) {
   if (evt.key === ESC_CODE) {
@@ -72,8 +74,14 @@ function submitFormEdit(evt) { // функция сохранения значе
   closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редактирования
 }
 
+function handleCardClick(name, link) {
+  imageInPopupImage.src = link;
+  headingInPopupImage.textContent = name;
+  openPopup(popupImage);
+}
+
 function generateAndAddCard(cardInfo, position) {
-  const card = new Card (cardInfo, '.card-template');
+  const card = new Card (cardInfo, '.card-template', handleCardClick);
   const cardElement = card.generateCard();
 
   if (position === 'begin') {
