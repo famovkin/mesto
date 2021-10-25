@@ -98,7 +98,6 @@ function submitFormAdd(evt) { // функция submit формы по доба�
   generateAndAddCard({name: placeNameInput.value, link: placeLinkInput.value}, 'begin');
 
   evt.target.reset(); // очистка инпутов
-  evt.target.querySelector('.popup__button').setAttribute('disabled', ''); // отключаем кнопку
   closePopup(formAdd); // закрытие формы
 }
 
