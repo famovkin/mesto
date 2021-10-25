@@ -7,7 +7,8 @@ const ESC_CODE = 'Escape';
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
 const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // находим кнопку редактирования
 const popupAddOpenBtn = document.querySelector('.profile__add-button'); // находим кнопку добавить карточку
-const formAdd = document.querySelector('.popup_type_add') // находим форму добавления карточки
+const popupAdd = document.querySelector('.popup_type_add'); // находим попап с классом popup_type_add
+const formAdd = document.querySelector('.popup__form_type_add') // находим форму добавления карточки
 const placeNameInput = formAdd.querySelector('.popup__input_type_place-name') // находим инпут с названием места
 const placeLinkInput = formAdd.querySelector('.popup__input_type_place-link') // находим инпут с линком картинки
 const popupImage = document.querySelector('.popup_type_image'); // находим элемент с классом popup_type_image
@@ -57,7 +58,7 @@ validatorForFormAdd.enableValidation();
 
 popupAddOpenBtn.addEventListener('click', () => {
   validatorForFormAdd.resetValidation();
-  openPopup(formAdd);
+  openPopup(popupAdd);
 });
 
 popupEditOpenBtn.addEventListener('click', () => {
@@ -104,7 +105,7 @@ function submitFormAdd(evt) { // функция submit формы по доба�
   generateAndAddCard({name: placeNameInput.value, link: placeLinkInput.value}, 'begin');
 
   evt.target.reset(); // очистка инпутов
-  closePopup(formAdd); // закрытие формы
+  closePopup(popupAdd); // закрытие формы
 }
 
 addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушатели для submit форм
