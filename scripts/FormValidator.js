@@ -22,7 +22,7 @@ export default class FormValidator {
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
     errorElement.classList.remove(this._errorClass);
-  };
+  }
 
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
@@ -31,12 +31,11 @@ export default class FormValidator {
       this._hideInputError(inputElement);
     };
   }
-
   _isInvalidInput(inputList) {
     return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
     });
-  };
+  }
 
   _toggleButtonState() {
     if (this._isInvalidInput(this._inputList)) {
@@ -46,7 +45,7 @@ export default class FormValidator {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.removeAttribute('disabled');
     };
-  };
+  }
 
   _setEventListeners() {
     this._toggleButtonState();
