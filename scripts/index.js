@@ -20,6 +20,7 @@ const jobInput = formEdit.querySelector('.popup__input_type_job'); // наход
 const cards = document.querySelector('.places__cards'); // находим список карточек
 const headingInPopupImage = popupImage.querySelector('.popup__heading');
 const imageInPopupImage = popupImage.querySelector('.popup__image');
+const popups = document.querySelectorAll('.popup');
 
 function closeByEsc(evt) {
   if (evt.key === ESC_CODE) {
@@ -38,16 +39,16 @@ function openPopup(modal) { // функция открытия попапа, в 
   window.addEventListener('keydown', closeByEsc);
 }
 
-function addListenersToCloseModal (modal) { // функция добавления слушателя для закрытия попапа
-  modal.querySelector('.popup__close-button').addEventListener('click', () => closePopup(modal));
-  modal.addEventListener('mousedown', (evt) => {
-    if (evt.target == evt.currentTarget) closePopup(evt.target);
-  })
-}
-
-addListenersToCloseModal(popupEdit);
-addListenersToCloseModal(popupAdd);
-addListenersToCloseModal(popupImage);
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close-image')) {
+      closePopup(popup);
+    }
+  });
+});
 
 function addListenerToOpenModal(button, modal) { // функция добавления слушателя для открытия попапов
   button.addEventListener('click', () => openPopup(modal)); // button - на что вешается слушатель, modal - какой попап открывать
