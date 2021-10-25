@@ -6,7 +6,6 @@ import FormValidator from './FormValidator.js';
 const ESC_CODE = 'Escape';
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
 const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // находим кнопку редактирования
-const popupAdd = document.querySelector('.popup_type_add'); // находим элемент с классом popup_type_add
 const popupAddOpenBtn = document.querySelector('.profile__add-button'); // находим кнопку добавить карточку
 const formAdd = document.querySelector('.popup_type_add') // находим форму добавления карточки
 const placeNameInput = formAdd.querySelector('.popup__input_type_place-name') // находим инпут с названием места
@@ -50,13 +49,19 @@ popups.forEach((popup) => {
   });
 });
 
-function addListenerToOpenModal(button, modal) { // функция добавления слушателя для открытия попапов
-  button.addEventListener('click', () => openPopup(modal)); // button - на что вешается слушатель, modal - какой попап открывать
-}
+const validatorForFormEdit = new FormValidator (config, formEdit);
+validatorForFormEdit.enableValidation();
 
-addListenerToOpenModal(popupAddOpenBtn, popupAdd); // вешаем слушатели для открытия попапов
+const validatorForFormAdd =  new FormValidator (config, formAdd);
+validatorForFormAdd.enableValidation();
+
+popupAddOpenBtn.addEventListener('click', () => {
+  validatorForFormAdd.resetValidation();
+  openPopup(formAdd);
+});
 
 popupEditOpenBtn.addEventListener('click', () => {
+  validatorForFormEdit.resetValidation();
   openPopup(popupEdit);
   nameInput.value = profileName.textContent; // содержимое из имени(h1) и работы(p) присвоится соответствующим инпутам
   jobInput.value = job.textContent;
@@ -107,9 +112,3 @@ addListenerToSubmitForm(formEdit, submitFormEdit);
 initialCards.forEach((item) => {
   generateAndAddCard(item);
 });
-
-const validatorForFormEdit = new FormValidator (config, formEdit);
-validatorForFormEdit.enableValidation();
-
-const validatorForFormAdd =  new FormValidator (config, formAdd);
-validatorForFormAdd.enableValidation();
