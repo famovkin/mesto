@@ -82,6 +82,7 @@ function submitFormEdit(evt) { // функция сохранения значе
 
 function handleCardClick(name, link) {
   imageInPopupImage.src = link;
+  imageInPopupImage.alt = name;
   headingInPopupImage.textContent = name;
   openPopup(popupImage);
 }
