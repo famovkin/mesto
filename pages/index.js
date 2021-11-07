@@ -1,26 +1,27 @@
-import { initialCards } from '../scripts/cards-array.js';
-import { config } from '../scripts/config.js'
+import {
+  initialCards,
+  config,
+  popupEditOpenBtn,
+  popupAddOpenBtn,
+  ESC_CODE,
+  popupAdd,
+  formAdd,
+  placeNameInput,
+  placeLinkInput,
+  popupImage,
+  popupEdit,
+  formEdit,
+  profileName,
+  job,
+  nameInput,
+  jobInput,
+  cards,
+  headingInPopupImage,
+  imageInPopupImage,
+  popups
+} from '../scripts/utils/constants.js';
 import Card from '../scripts/Card.js';
 import FormValidator from '../scripts/FormValidator.js';
-
-const ESC_CODE = 'Escape';
-const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
-const popupEditOpenBtn = document.querySelector('.profile__edit-button'); // находим кнопку редактирования
-const popupAddOpenBtn = document.querySelector('.profile__add-button'); // находим кнопку добавить карточку
-const popupAdd = document.querySelector('.popup_type_add'); // находим попап с классом popup_type_add
-const formAdd = document.querySelector('.popup__form_type_add') // находим форму добавления карточки
-const placeNameInput = formAdd.querySelector('.popup__input_type_place-name') // находим инпут с названием места
-const placeLinkInput = formAdd.querySelector('.popup__input_type_place-link') // находим инпут с линком картинки
-const popupImage = document.querySelector('.popup_type_image'); // находим элемент с классом popup_type_image
-const formEdit = document.querySelector('.popup__form_type_edit'); // находим форму c редактированием профиля
-const profileName = document.querySelector('.profile__name'); // находим заголовок с именем
-const job = document.querySelector('.profile__job'); // находим параграф с работой
-const nameInput = formEdit.querySelector('.popup__input_type_name'); // находим инпут с именем
-const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
-const cards = document.querySelector('.places__cards'); // находим список карточек
-const headingInPopupImage = popupImage.querySelector('.popup__heading');
-const imageInPopupImage = popupImage.querySelector('.popup__image');
-const popups = document.querySelectorAll('.popup');
 
 function closeByEsc(evt) {
   if (evt.key === ESC_CODE) {
