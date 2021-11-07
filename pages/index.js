@@ -3,22 +3,10 @@ import {
   config,
   popupEditOpenBtn,
   popupAddOpenBtn,
-  ESC_CODE,
-  popupAdd,
   formAdd,
-  placeNameInput,
-  placeLinkInput,
-  popupImage,
-  popupEdit,
   formEdit,
-  profileName,
-  job,
   nameInput,
-  jobInput,
-  cards,
-  headingInPopupImage,
-  imageInPopupImage,
-  popups
+  jobInput
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
