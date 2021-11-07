@@ -1,7 +1,7 @@
-import { initialCards } from './cards-array.js';
-import { config } from './config.js'
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import { initialCards } from '../scripts/cards-array.js';
+import { config } from '../scripts/config.js'
+import Card from '../scripts/Card.js';
+import FormValidator from '../scripts/FormValidator.js';
 
 const ESC_CODE = 'Escape';
 const popupEdit = document.querySelector('.popup_type_edit'); // находим элемент с классом popup_type_edit
