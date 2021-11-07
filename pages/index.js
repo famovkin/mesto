@@ -82,24 +82,6 @@ function submitFormEdit(evt) { // функция сохранения значе
   closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редактирования
 }
 
-function handleCardClick(name, link) {
-  imageInPopupImage.src = link;
-  imageInPopupImage.alt = name;
-  headingInPopupImage.textContent = name;
-  openPopup(popupImage);
-}
-
-function generateAndAddCard(cardInfo, position) {
-  const card = new Card (cardInfo, '.card-template', handleCardClick);
-  const cardElement = card.generateCard();
-
-  if (position === 'begin') {
-    cards.prepend(cardElement);
-  } else {
-    cards.append(cardElement);
-  }
-}
-
 function submitFormAdd(evt) { // функция submit формы по добавлению карточек
   evt.preventDefault();
 
@@ -111,7 +93,3 @@ function submitFormAdd(evt) { // функция submit формы по доба�
 
 addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушатели для submit форм
 addListenerToSubmitForm(formEdit, submitFormEdit);
-
-initialCards.forEach((item) => {
-  generateAndAddCard(item);
-});
