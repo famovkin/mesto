@@ -82,3 +82,20 @@ popupAddOpenBtn.addEventListener('click', () => {
   popupAddForm.open();
   popupAddForm.setEventListeners();
 });
+
+const profileInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.profile__job' });
+
+const popupEditForm = new PopupWithForm({
+  popupSelector: '.popup_type_edit',
+  handleFormSubmit: formData => {
+    profileInfo.setUserInfo(formData.name, formData.job);
+    popupEditForm.close();
+  }
+});
+
+popupEditOpenBtn.addEventListener('click', () => {
+  nameInput.value = profileInfo.getUserInfo()['name'];
+  jobInput.value = profileInfo.getUserInfo()['job'];
+  popupEditForm.open();
+  popupEditForm.setEventListeners();
+});
