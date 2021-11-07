@@ -79,6 +79,7 @@ const popupAddForm = new PopupWithForm({
 });
 
 popupAddOpenBtn.addEventListener('click', () => {
+  validatorForFormAdd.resetValidation()
   popupAddForm.open();
   popupAddForm.setEventListeners();
 });
@@ -94,6 +95,7 @@ const popupEditForm = new PopupWithForm({
 });
 
 popupEditOpenBtn.addEventListener('click', () => {
+  validatorForFormEdit.resetValidation()
   nameInput.value = profileInfo.getUserInfo()['name'];
   jobInput.value = profileInfo.getUserInfo()['job'];
   popupEditForm.open();
