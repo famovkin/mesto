@@ -31,31 +31,6 @@ validatorForFormEdit.enableValidation();
 const validatorForFormAdd =  new FormValidator (config, formAdd);
 validatorForFormAdd.enableValidation();
 
-function addListenerToSubmitForm(form, submitFunc) { // фукнция добавления слушателя для submit формы
-  form.addEventListener('submit', submitFunc); // form - сама форма, submitFunc - функция, которая выполнится
-}
-
-function submitFormEdit(evt) { // функция сохранения значений из инпутов
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value; // h1 и p присваиваются соответствующие значения из инпутов
-  job.textContent = jobInput.value;
-
-  closePopup(popupEdit); // вызываем функцию закрытия попапа, передаем параметр формы редактирования
-}
-
-function submitFormAdd(evt) { // функция submit формы по добавлению карточек
-  evt.preventDefault();
-
-  generateAndAddCard({name: placeNameInput.value, link: placeLinkInput.value}, 'begin');
-
-  evt.target.reset(); // очистка инпутов
-  closePopup(popupAdd); // закрытие формы
-}
-
-addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушатели для submit форм
-addListenerToSubmitForm(formEdit, submitFormEdit);
-
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
