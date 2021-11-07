@@ -52,3 +52,33 @@ const cardList = new Section({
 }, '.places__cards');
 
 cardList.renderItems();
+
+const popupAddForm = new PopupWithForm({
+  popupSelector: '.popup_type_add',
+  handleFormSubmit: formData => {
+    const addedCard = new Section({
+      items: [ {name: formData['place-name'], link: formData['place-link']} ],
+      renderer: (item) => {
+        const card = new Card({
+          name: item.name,
+          link: item.link,
+          handleCardClick: (cardName, cardLink) => {
+            const popupImage = new PopupWithImage({ name: cardName, link: cardLink }, '.popup_type_image');
+            popupImage.open();
+            popupImage.setEventListeners();
+          }
+        }, '.card-template');
+        const cardElement = card.generateCard();
+
+        addedCard.addItem(cardElement);
+      }
+    }, '.places__cards', 'begin');
+    popupAddForm.close();
+    addedCard.renderItems();
+  }
+});
+
+popupAddOpenBtn.addEventListener('click', () => {
+  popupAddForm.open();
+  popupAddForm.setEventListeners();
+});
