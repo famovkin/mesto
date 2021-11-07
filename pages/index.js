@@ -22,6 +22,8 @@ import {
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
+import Section from '../scripts/components/Section.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
 
 function closeByEsc(evt) {
   if (evt.key === ESC_CODE) {
