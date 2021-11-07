@@ -95,3 +95,23 @@ function submitFormAdd(evt) { // функция submit формы по доба�
 
 addListenerToSubmitForm(formAdd, submitFormAdd); // вешаем слушатели для submit форм
 addListenerToSubmitForm(formEdit, submitFormEdit);
+
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card({
+      name: item.name,
+      link: item.link,
+      handleCardClick: (cardName, cardlink) => {
+        const popupImage = new PopupWithImage({ name: cardName, link: cardlink }, '.popup_type_image');
+        popupImage.open();
+        popupImage.setEventListeners();
+      }
+    }, '.card-template');
+    const cardElement = card.generateCard();
+
+    cardList.addItem(cardElement);
+  }
+}, '.places__cards');
+
+cardList.renderItems();
