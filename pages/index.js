@@ -20,8 +20,8 @@ import {
   imageInPopupImage,
   popups
 } from '../scripts/utils/constants.js';
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
+import Card from '../scripts/components/Card.js';
+import FormValidator from '../scripts/components/FormValidator.js';
 
 function closeByEsc(evt) {
   if (evt.key === ESC_CODE) {
