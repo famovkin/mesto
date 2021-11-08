@@ -9,6 +9,7 @@ export default class Popup {
 
   open() {
     this._popup.classList.add('popup_opened');
+    window.addEventListener('keydown', this._keydownListenerBind);
   }
 
   close() {
@@ -31,6 +32,5 @@ export default class Popup {
         this.close();
       }
     });
-    window.addEventListener('keydown', this._keydownListenerBind);
   }
 }
