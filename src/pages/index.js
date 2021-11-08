@@ -25,6 +25,8 @@ validatorForFormAdd.enableValidation();
 // создаем экземпляр класса PopupWithImage, он отвечает за передачу заголовка и ссылки на фото в попап с изображением
 const popupImage = new PopupWithImage('.popup_type_image');
 
+popupImage.setEventListeners();
+
 const cardList = new Section({ // создаем экземляр класса Section, который отвечает за отрисовку начального массива карточек
   items: initialCards,
   renderer: (item) => { // в item приходит каждый элемент массива initialCards
@@ -33,7 +35,6 @@ const cardList = new Section({ // создаем экземляр класса S
       link: item.link,
       handleCardClick: (cardName, cardlink) => { // в handleCardClick приходят параметры (cardName, cardlink), переданные в конструктор Card - item.name и item.link
         popupImage.open(cardName, cardlink);
-        popupImage.setEventListeners();
       }
     }, '.card-template');
     const cardElement = card.generateCard(); // при генерации карточки, вешаются слушатели на ее элементы,
@@ -56,7 +57,6 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
           link: item.link,
           handleCardClick: (cardName, cardLink) => {
             popupImage.open(cardName, cardLink); // передаем ссылку на фото и заголовок при открытии попапа с изображением
-            popupImage.setEventListeners();
           }
         }, '.card-template');
         const cardElement = card.generateCard();
@@ -69,10 +69,11 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
   }
 });
 
+popupAddForm.setEventListeners(); // вешаем слушатели на форму
+
 popupAddOpenBtn.addEventListener('click', () => { // слушатель на кнопку плюс
   validatorForFormAdd.resetValidation() // сбрасываем валидацию, чтобы стереть предыдущие ошибки, если они были
   popupAddForm.open(); // открываем форму
-  popupAddForm.setEventListeners(); // вешаем слушатели на форму
 });
 
 // создаем экземпляр класса UserInfo, он отвечает за отображение информации о пользователе на странице
@@ -86,10 +87,11 @@ const popupEditForm = new PopupWithForm({ // ребенок Popup, этот эк
   }
 });
 
+popupEditForm.setEventListeners();
+
 popupEditOpenBtn.addEventListener('click', () => {
   validatorForFormEdit.resetValidation()
   nameInput.value = profileInfo.getUserInfo()['name']; // заполняем поля инпутов текущими значениями, которые берем со страницы
   jobInput.value = profileInfo.getUserInfo()['job'];
   popupEditForm.open();
-  popupEditForm.setEventListeners();
 });
