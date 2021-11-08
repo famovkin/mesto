@@ -40,18 +40,11 @@ function createCard(item) { // функция для создания и воз�
   return cardElement;
 }
 
-const cardList = new Section({ // создаем экземляр класса Section, который отвечает за отрисовку начального массива карточек
+const cardList = new Section({ // создаем экземляр класса Section, который отвечает за добавление карточек в контейнере
   items: initialCards,
   renderer: (item) => { // в item приходит каждый элемент массива initialCards
-    const card = new Card({
-      name: item.name,
-      link: item.link,
-      handleCardClick: (cardName, cardlink) => { // в handleCardClick приходят параметры (cardName, cardlink), переданные в конструктор Card - item.name и item.link
-        popupImage.open(cardName, cardlink);
-      }
-    }, '.card-template');
-    const cardElement = card.generateCard(); // при генерации карточки, вешаются слушатели на ее элементы,
-    // при нажатии на картинку вызывается handleCardClick, который мы описали выше
+    const cardElement = createCard(item); // в cardElement получим элемент карточки
+
     cardList.addItem(cardElement);
   }
 }, '.places__cards');
