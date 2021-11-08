@@ -21,6 +21,9 @@ validatorForFormEdit.enableValidation();
 const validatorForFormAdd =  new FormValidator (config, formAdd);
 validatorForFormAdd.enableValidation();
 
+// создаем экземпляр класса PopupWithImage, он отвечает за передачу заголовка и ссылки на фото в попап с изображением
+const popupImage = new PopupWithImage('.popup_type_image');
+
 const cardList = new Section({ // создаем экземляр класса Section, который отвечает за отрисовку начального массива карточек
   items: initialCards,
   renderer: (item) => { // в item приходит каждый элемент массива initialCards
@@ -28,9 +31,7 @@ const cardList = new Section({ // создаем экземляр класса S
       name: item.name,
       link: item.link,
       handleCardClick: (cardName, cardlink) => { // в handleCardClick приходят параметры (cardName, cardlink), переданные в конструктор Card - item.name и item.link
-        const popupImage = new PopupWithImage({ name: cardName, link: cardlink }, '.popup_type_image');
-        // экземпляр отвечает за вставку ссылки на картинку и текст заголовка в попап с картинкой
-        popupImage.open();
+        popupImage.open(cardName, cardlink);
         popupImage.setEventListeners();
       }
     }, '.card-template');
@@ -53,8 +54,7 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
           name: item.name,
           link: item.link,
           handleCardClick: (cardName, cardLink) => {
-            const popupImage = new PopupWithImage({ name: cardName, link: cardLink }, '.popup_type_image');
-            popupImage.open();
+            popupImage.open(cardName, cardLink); // передаем ссылку на фото и заголовок при открытии попапа с изображением
             popupImage.setEventListeners();
           }
         }, '.card-template');
