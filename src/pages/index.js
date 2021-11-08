@@ -27,6 +27,19 @@ const popupImage = new PopupWithImage('.popup_type_image');
 
 popupImage.setEventListeners();
 
+function createCard(item) { // функция для создания и возвращения карточки
+  const card = new Card({
+    name: item.name,
+    link: item.link,
+    handleCardClick: (cardName, cardlink) => { // в handleCardClick приходят параметры (cardName, cardlink), переданные в конструктор Card - item.name и item.link
+      popupImage.open(cardName, cardlink); // открываем попап, передавая в него нужные параметры
+    }
+  }, '.card-template');
+  const cardElement = card.generateCard(); // при генерации карточки, вешаются слушатели на ее элементы,
+  // при нажатии на картинку вызывается handleCardClick, который мы описали выше
+  return cardElement;
+}
+
 const cardList = new Section({ // создаем экземляр класса Section, который отвечает за отрисовку начального массива карточек
   items: initialCards,
   renderer: (item) => { // в item приходит каждый элемент массива initialCards
