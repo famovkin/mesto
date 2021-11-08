@@ -14,6 +14,7 @@ import Section from '../scripts/components/Section.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+import './index.css';
 
 const validatorForFormEdit = new FormValidator (config, formEdit);
 validatorForFormEdit.enableValidation();
