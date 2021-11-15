@@ -1,0 +1,17 @@
+.card__like-counter {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.23;
+}
+
+@media (max-width: 630px) {
+  .card__like-counter {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .card__like-counter {
+    font-size: 13px;
+  }
+}
