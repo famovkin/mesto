@@ -89,6 +89,19 @@
         <button class="popup__button popup__button_type_confirm" type="button">Да</button>
       </div>
     </div>
+    <div class="popup popup_type_update-avatar">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button">
+          <img class="popup__close-image" src="./images/close_icon.svg" alt="Крестик">
+        </button>
+        <form class="popup__form popup__form_type_update-avatar" name="update-avatar" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input id="avatar-link-input" class="popup__input popup__input_type_avatar-link" type="url" name="avatar-link" placeholder="Ссылка на аватар" required>
+          <span class="popup__error avatar-link-input-error"></span>
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <template class="card-template">
       <li class="card">
         <button class="card__delete-button" type="button">
