@@ -1,0 +1,10 @@
+.popup__title_type_confirm {
+  margin: 0 0 32px;
+}
+
+@media (max-width: 630px) {
+  .popup__title_type_confirm {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
