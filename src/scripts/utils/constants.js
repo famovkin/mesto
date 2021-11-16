@@ -46,5 +46,6 @@ export const popupAddOpenBtn = document.querySelector('.profile__add-button'); /
 export const ESC_CODE = 'Escape';
 export const formAdd = document.querySelector('.popup__form_type_add') // находим форму добавления карточки
 export const formEdit = document.querySelector('.popup__form_type_edit'); // находим форму c редактированием профиля
+export const formUpdateAvatar = document.querySelector('.popup__form_type_update-avatar');
 export const nameInput = formEdit.querySelector('.popup__input_type_name'); // находим инпут с именем
 export const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой

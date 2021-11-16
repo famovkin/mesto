@@ -5,6 +5,7 @@ import {
   popupAddOpenBtn,
   formAdd,
   formEdit,
+  formUpdateAvatar,
   nameInput,
   jobInput
 } from '../scripts/utils/constants.js';
@@ -21,6 +22,9 @@ validatorForFormEdit.enableValidation();
 
 const validatorForFormAdd =  new FormValidator (config, formAdd);
 validatorForFormAdd.enableValidation();
+
+const validatorForFormUpdateAvatar =  new FormValidator (config, formUpdateAvatar);
+validatorForFormUpdateAvatar.enableValidation();
 
 // создаем экземпляр класса PopupWithImage, он отвечает за передачу заголовка и ссылки на фото в попап с изображением
 const popupImage = new PopupWithImage('.popup_type_image');
