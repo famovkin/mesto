@@ -66,10 +66,16 @@ const profileInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: 
 
 const popupEditForm = new PopupWithForm({ // ребенок Popup, этот экземпляр отвечает за сабмит формы и ее сброс при закрытии
   popupSelector: '.popup_type_edit',
-  handleFormSubmit: formData => { // в formData мы получается объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
-    profileInfo.setUserInfo(formData.name, formData.job); // в параметрах метода те значения, которые мы установим на странице
-    popupEditForm.close();
-  }
+  handleFormSubmit: formUserInfo => { // в formUserInfo мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
+    api.editUserInfo(
+      formUserInfo,
+      serverUserInfo => { // ответ от сервера с данными о пользователе
+        profileInfo.setUserInfo(serverUserInfo)
+        popupEditForm.close();
+      },
+    );
+  },
+  renderLoading: showStatusLoading
 });
 
 popupEditForm.setEventListeners();
