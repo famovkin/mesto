@@ -88,3 +88,10 @@ function showStatusLoading(buttonElement, isLoading) {
     buttonElement.textContent = 'Сохранить';
   }
 }
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-30/',
+  token: 'f8d069a4-3828-4aef-8f1b-77976b73046b'
+  }, showStatusLoading);
+
+Promise.all([api.getUserInfo(serverUserInfo => profileInfo.setUserInfo(serverUserInfo))]);
