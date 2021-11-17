@@ -80,3 +80,11 @@ popupEditOpenBtn.addEventListener('click', () => {
   jobInput.value = profileInfo.getUserInfo()['job'];
   popupEditForm.open();
 });
+
+function showStatusLoading(buttonElement, isLoading) {
+  if (isLoading) {
+    buttonElement.textContent = 'Сохранение...';
+  } else {
+    buttonElement.textContent = 'Сохранить';
+  }
+}
