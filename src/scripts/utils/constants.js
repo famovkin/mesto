@@ -1,37 +1,3 @@
-import budapest from '../../images/budapest.jpg';
-import budapest2 from '../../images/budapest2.jpg';
-import kaliningrad from '../../images/kaliningrad.jpg';
-import thailand from '../../images/thailand.jpg';
-import vietnam from '../../images/vietnam.jpg';
-import vladimir from '../../images/vladimir.jpg';
-
-export const initialCards = [
-  {
-    name: 'Владимир',
-    link: vladimir
-  },
-  {
-    name: 'Будапешт',
-    link: budapest
-  },
-  {
-    name: 'Калининград (Königsberg)',
-    link: kaliningrad
-  },
-  {
-    name: 'Будапешт',
-    link: budapest2
-  },
-  {
-    name: 'Тайланд',
-    link: thailand
-  },
-  {
-    name: 'Вьетнам',
-    link: vietnam
-  }
-];
-
 export const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

@@ -1,5 +1,4 @@
 import {
-  initialCards,
   config,
   popupEditOpenBtn,
   popupAddOpenBtn,
@@ -43,17 +42,6 @@ function createCard(item) { // функция для создания и воз�
   // при нажатии на картинку вызывается handleCardClick, который мы описали выше
   return cardElement;
 }
-
-const cardList = new Section({ // создаем экземляр класса Section, который отвечает за добавление карточек в контейнере
-  items: initialCards,
-  renderer: (item) => { // в item приходит каждый элемент массива initialCards
-    const cardElement = createCard(item); // в cardElement получим элемент карточки
-
-    cardList.addItem(cardElement);
-  }
-}, '.places__cards');
-
-cardList.renderItems(); // вызываем метод класса, отрисовываем карточки при загрузке страницы
 
 const popupAddForm = new PopupWithForm({ // ребенок Popup, этот экземпляр отвечает за сабмит формы и ее сброс при закрытии
   popupSelector: '.popup_type_add',
