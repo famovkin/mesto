@@ -1,4 +1,11 @@
 export default class Api {
+  static checkServerResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   constructor({ baseUrl, token }, renderLoading) {
     this._baseUrl = baseUrl;
     this._token = token;
@@ -12,12 +19,7 @@ export default class Api {
         authorization: this._token,
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => Api.checkServerResponse(res))
     .then(res => {
       renderer(res);
       this.userId = res._id;
@@ -37,12 +39,7 @@ export default class Api {
         about: job
       })
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => Api.checkServerResponse(res))
     .then(res => {
       renderer(res);
     })
@@ -58,12 +55,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => Api.checkServerResponse(res))
     .then(res => {
       return res;
     })
