@@ -6,18 +6,16 @@ export default class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  constructor({ baseUrl, token }, renderLoading) {
+  constructor({ baseUrl, headers }, renderLoading) {
     this._baseUrl = baseUrl;
-    this._token = token;
+    this._headers = headers;
     this._renderLoading = renderLoading;
     this._editFormSumbitBtn = document.forms.information.querySelector('.popup__button');
   }
 
   getUserInfo(renderer) {
     return fetch(`${this._baseUrl}users/me`, {
-      headers: {
-        authorization: this._token,
-      }
+      headers: this._headers
     })
     .then(res => Api.checkServerResponse(res))
     .then(res => {
@@ -30,10 +28,7 @@ export default class Api {
   editUserInfo({ name, job }, renderer) {
     return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: job
@@ -51,9 +46,7 @@ export default class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}cards`, {
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers
     })
     .then(res => Api.checkServerResponse(res))
     .then(res => {
