@@ -25,7 +25,7 @@ export default class Api {
     .catch(err => console.log(err));
   }
 
-  editUserInfo({ name, job }, renderer) {
+  editUserInfo({ name, job }) {
     return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -35,13 +35,6 @@ export default class Api {
       })
     })
     .then(res => Api.checkServerResponse(res))
-    .then(res => {
-      renderer(res);
-    })
-    .catch(err => console.log(err))
-    .finally(() => {
-      this._renderLoading(this._editFormSumbitBtn, false);
-    });
   }
 
   getInitialCards() {

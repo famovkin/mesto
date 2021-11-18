@@ -6,7 +6,8 @@ import {
   formEdit,
   formUpdateAvatar,
   nameInput,
-  jobInput
+  jobInput,
+  editPopupSubmitBtn
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -67,13 +68,13 @@ const profileInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: 
 const popupEditForm = new PopupWithForm({ // ребенок Popup, этот экземпляр отвечает за сабмит формы и ее сброс при закрытии
   popupSelector: '.popup_type_edit',
   handleFormSubmit: formUserInfo => { // в formUserInfo мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
-    api.editUserInfo(
-      formUserInfo,
-      serverUserInfo => { // ответ от сервера с данными о пользователе
-        profileInfo.setUserInfo(serverUserInfo)
+    api.editUserInfo(formUserInfo)
+      .then(serverUserInfo => { // ответ от сервера с данными о пользователе
+        profileInfo.setUserInfo(serverUserInfo);
         popupEditForm.close();
-      },
-    );
+      })
+      .catch(err => console.log(err)) // обработчик ошибки
+      .finally(() => showStatusLoading(editPopupSubmitBtn, false)); // скрыть прелоадер
   },
   renderLoading: showStatusLoading
 });

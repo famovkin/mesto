@@ -15,3 +15,4 @@ export const formEdit = document.querySelector('.popup__form_type_edit'); // н�
 export const formUpdateAvatar = document.querySelector('.popup__form_type_update-avatar');
 export const nameInput = formEdit.querySelector('.popup__input_type_name'); // находим инпут с именем
 export const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
+export const editPopupSubmitBtn = formEdit.querySelector('.popup__button');
