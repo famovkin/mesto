@@ -32,6 +32,8 @@ const popupImage = new PopupWithImage('.popup_type_image');
 
 popupImage.setEventListeners();
 
+let userId;
+
 function createCard(item) { // функция для создания и возвращения карточки
   const card = new Card({
     name: item.name,
@@ -106,4 +108,9 @@ const api = new Api({
   showStatusLoading
 );
 
-Promise.all([api.getUserInfo(serverUserInfo => profileInfo.setUserInfo(serverUserInfo))]);
+Promise.all([api.getUserInfo()])
+  .then(res => {
+    userId = res._id;
+    profileInfo.setUserInfo(res[0]);
+  })
+  .catch(err => console.log(err));

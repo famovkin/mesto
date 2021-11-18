@@ -13,16 +13,11 @@ export default class Api {
     this._editFormSumbitBtn = document.forms.information.querySelector('.popup__button');
   }
 
-  getUserInfo(renderer) {
+  getUserInfo() {
     return fetch(`${this._baseUrl}users/me`, {
       headers: this._headers
     })
     .then(res => Api.checkServerResponse(res))
-    .then(res => {
-      renderer(res);
-      this.userId = res._id;
-    })
-    .catch(err => console.log(err));
   }
 
   editUserInfo({ name, job }) {
