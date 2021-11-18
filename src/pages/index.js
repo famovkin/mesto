@@ -46,12 +46,25 @@ function createCard(item) { // функция для создания и воз�
   const card = new Card({
     name: item.name,
     link: item.link,
-    handleCardClick: (cardName, cardlink) => { // в handleCardClick приходят параметры (cardName, cardlink), переданные в конструктор Card - item.name и item.link
-      popupImage.open(cardName, cardlink); // открываем попап, передавая в него нужные параметры
-    }
-  }, '.card-template');
-  const cardElement = card.generateCard(); // при генерации карточки, вешаются слушатели на ее элементы,
-  // при нажатии на картинку вызывается handleCardClick, который мы описали выше
+    id: item._id,
+    numberOfLikes: item.likes.length,
+    whoLiked: item.likes,
+    ownerId: item.owner._id
+    },
+    {
+      handleCardClick: (cardName, cardlink) => popupImage.open(cardName, cardlink),
+      handleDeleteBtnClick: () => {},
+      handleLikeBtnClick: cardId => {
+        api.pressLike(cardId)
+          .then(res => { // после ответа сервера
+            card.likeButton.classList.add('card__like-button_type_liked'); // окрашиваем кнопку лайка
+            card.counterOfLikes.textContent = res.likes.length; // меняем кол-во лайков
+          })
+          .catch(err => console.log(err))
+      }
+    }, '.card-template');
+  const cardElement = card.generateCard(checkCardStatus(userId, item.likes, item.owner._id));
+  // в generateCard придет объект с 2 булевыми значениями
   return cardElement;
 }
 
@@ -118,7 +131,7 @@ const api = new Api({
 
 const cardList = new Section({ // создаем экземляр класса Section, который отвечает за добавление карточек в контейнере
   renderer: item => { // в item приходит каждый элемент массива
-    const cardElement = (item) => {}; // в cardElement получим элемент карточки
+    const cardElement = createCard(item); // в cardElement получим элемент карточки
     cardList.addItem(cardElement); // добавляем в DOM
   }
 }, '.places__cards');
