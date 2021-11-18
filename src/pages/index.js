@@ -128,7 +128,7 @@ Promise.all([
   api.getInitialCards()
   ])
   .then(res => {
-    userId = res._id; // получаем id пользователя
+    userId = res[0]._id; // получаем id пользователя
     profileInfo.setUserInfo(res[0]); // в res[0] результат первого промиса в массиве, аналогично с остальными
     cardList.renderItems(res[1]); // вызываем метод класса, отрисовываем карточки при загрузке страницы
   })
