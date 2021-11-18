@@ -34,6 +34,14 @@ popupImage.setEventListeners();
 
 let userId;
 
+function checkCardStatus (userId, likesInfo, ownerUserId) {
+  const status = {}; // объект для результата
+  const arrayOfLikedUsersd = likesInfo.map(info => info['_id']); // создаем массив из id пользователей, поставивших лайк
+  status['isLiked'] = arrayOfLikedUsersd.some(people => userId === people); // ищем пользователя в массиве выше
+  status['isOwner'] = userId === ownerUserId; // сравнимаем id пользователя и id автора
+  return status;
+}
+
 function createCard(item) { // функция для создания и возвращения карточки
   const card = new Card({
     name: item.name,
