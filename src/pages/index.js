@@ -116,9 +116,20 @@ const api = new Api({
   showStatusLoading
 );
 
-Promise.all([api.getUserInfo()])
+const cardList = new Section({ // создаем экземляр класса Section, который отвечает за добавление карточек в контейнере
+  renderer: item => { // в item приходит каждый элемент массива
+    const cardElement = (item) => {}; // в cardElement получим элемент карточки
+    cardList.addItem(cardElement); // добавляем в DOM
+  }
+}, '.places__cards');
+
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+  ])
   .then(res => {
-    userId = res._id;
-    profileInfo.setUserInfo(res[0]);
+    userId = res._id; // получаем id пользователя
+    profileInfo.setUserInfo(res[0]); // в res[0] результат первого промиса в массиве, аналогично с остальными
+    cardList.renderItems(res[1]); // вызываем метод класса, отрисовываем карточки при загрузке страницы
   })
   .catch(err => console.log(err));
