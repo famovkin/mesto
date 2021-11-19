@@ -18,3 +18,6 @@ export const jobInput = formEdit.querySelector('.popup__input_type_job'); // Ð½Ð
 export const editPopupSubmitBtn = formEdit.querySelector('.popup__button');
 export const confirmPopupButton = document.querySelector('.popup__button_type_confirm');
 export const addPopupSubmitBtn = formAdd.querySelector('.popup__button');
+export const updateAvatarSubmitBtn = formUpdateAvatar.querySelector('.popup__button');
+export const updateAvatarButton = document.querySelector('.profile__avatar-edit-button');
+export const profileAvatar = document.querySelector('.profile__avatar-image');

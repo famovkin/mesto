@@ -9,7 +9,10 @@ import {
   jobInput,
   editPopupSubmitBtn,
   confirmPopupButton,
-  addPopupSubmitBtn
+  addPopupSubmitBtn,
+  updateAvatarButton,
+  updateAvatarSubmitBtn,
+  profileAvatar
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -171,6 +174,7 @@ Promise.all([
   api.getInitialCards()
   ])
   .then(res => {
+    profileAvatar.src = res[0].avatar;
     userId = res[0]._id; // получаем id пользователя
     profileInfo.setUserInfo(res[0]); // в res[0] результат первого промиса в массиве, аналогично с остальными
     cardList.renderItems(res[1]); // вызываем метод класса, отрисовываем карточки при загрузке страницы
@@ -180,3 +184,25 @@ Promise.all([
   const confirmPopup = new Popup('.popup_type_confirm');
 
   confirmPopup.setEventListeners();
+
+const updateAvatarForm = new PopupWithForm({
+  popupSelector: '.popup_type_update-avatar',
+  handleFormSubmit: formAvatarInfo => {
+    showStatusLoading(updateAvatarSubmitBtn, true);
+    api.updateProfileAvatar(formAvatarInfo['avatar-link'])
+      .then(serverAvatarInfo => {
+        console.log(serverAvatarInfo);
+        profileAvatar.src = serverAvatarInfo.avatar;
+        updateAvatarForm.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => showStatusLoading(updateAvatarSubmitBtn, false));
+  }
+})
+
+updateAvatarForm.setEventListeners();
+
+updateAvatarButton.addEventListener('click', () => {
+  validatorForFormUpdateAvatar.resetValidation();
+  updateAvatarForm.open();
+});

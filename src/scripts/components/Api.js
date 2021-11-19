@@ -78,4 +78,15 @@ export default class Api {
     })
     .then(res => Api.checkServerResponse(res))
   }
+
+  updateProfileAvatar(newAvatarLink) {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: newAvatarLink
+      })
+    })
+    .then(res => Api.checkServerResponse(res))
+  }
 }

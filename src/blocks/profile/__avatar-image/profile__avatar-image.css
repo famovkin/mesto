@@ -1,18 +1,22 @@
 .profile__avatar-image {
   display: block;
+  object-fit: cover;
   border-radius: 50%;
   width: 120px;
+  height: 120px;
 }
 
 
 @media (max-width: 768px) {
   .profile__avatar-image {
     width: 200px;
+    height: 200px;
   }
 }
 
 @media (max-width: 425px) {
   .profile__avatar-image {
     width: 120px;
+    height: 120px;
   }
 }
