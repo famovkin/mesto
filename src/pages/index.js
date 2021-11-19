@@ -12,6 +12,7 @@ import {
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
+import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
@@ -156,3 +157,7 @@ Promise.all([
     cardList.renderItems(res[1]); // вызываем метод класса, отрисовываем карточки при загрузке страницы
   })
   .catch(err => console.log(err));
+
+  const confirmPopup = new Popup('.popup_type_confirm');
+
+  confirmPopup.setEventListeners();
