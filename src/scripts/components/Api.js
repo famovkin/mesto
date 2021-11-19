@@ -50,4 +50,12 @@ export default class Api {
     })
     .then(res => Api.checkServerResponse(res))
   }
+
+  removeLike(cardId) {
+    return fetch(`${this._baseUrl}cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(res => Api.checkServerResponse(res))
+  }
 }
