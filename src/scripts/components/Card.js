@@ -1,10 +1,9 @@
 export default class Card {
-  constructor({ name, link, id, numberOfLikes, whoLiked, ownerId }, { handleCardClick, handleDeleteBtnClick, handleLikeBtnClick }, cardSelector) {
+  constructor({ name, link, id, whoLiked, ownerId }, { handleCardClick, handleDeleteBtnClick, handleLikeBtnClick }, cardSelector) {
     this._name = name;
     this._link = link;
     this._id = id;
-    this._numberOfLikes = numberOfLikes;
-    this._whoLiked = whoLiked;
+    this.whoLiked = whoLiked;
     this._ownerId = ownerId;
     this._handleCardClick = handleCardClick;
     this._handleDeleteBtnClick = handleDeleteBtnClick;
@@ -39,12 +38,18 @@ export default class Card {
 
     this._setEventListeners(isOwner);
 
-    this.counterOfLikes.textContent = this._numberOfLikes;
+    this.counterOfLikes.textContent = this.whoLiked.length;
     this._element.querySelector('.card__title').textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
 
     return this._element;
+  }
+
+  renderLikes(newArrayLikes, newCount) {
+    this.likeButton.classList.toggle('card__like-button_type_liked');
+    this.counterOfLikes.textContent = newCount;
+    this.whoLiked = newArrayLikes;
   }
 
   _setEventListeners(isOwner) {
