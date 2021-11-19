@@ -115,6 +115,7 @@ const profileInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: 
 const popupEditForm = new PopupWithForm({ // ребенок Popup, этот экземпляр отвечает за сабмит формы и ее сброс при закрытии
   popupSelector: '.popup_type_edit',
   handleFormSubmit: formUserInfo => { // в formUserInfo мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
+    showStatusLoading(editPopupSubmitBtn, true)
     api.editUserInfo(formUserInfo)
       .then(serverUserInfo => { // ответ от сервера с данными о пользователе
         profileInfo.setUserInfo(serverUserInfo);
@@ -122,8 +123,7 @@ const popupEditForm = new PopupWithForm({ // ребенок Popup, этот эк
       })
       .catch(err => console.log(err)) // обработчик ошибки
       .finally(() => showStatusLoading(editPopupSubmitBtn, false)); // скрыть прелоадер
-  },
-  renderLoading: showStatusLoading
+  }
 });
 
 popupEditForm.setEventListeners();
