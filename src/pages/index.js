@@ -51,7 +51,6 @@ function createCard(item) { // функция для создания и воз�
     name: item.name,
     link: item.link,
     id: item._id,
-    numberOfLikes: item.likes.length,
     whoLiked: item.likes,
     ownerId: item.owner._id
     },
@@ -59,12 +58,19 @@ function createCard(item) { // функция для создания и воз�
       handleCardClick: (cardName, cardlink) => popupImage.open(cardName, cardlink),
       handleDeleteBtnClick: () => {},
       handleLikeBtnClick: cardId => {
-        api.pressLike(cardId)
-          .then(res => { // после ответа сервера
-            card.likeButton.classList.add('card__like-button_type_liked'); // окрашиваем кнопку лайка
-            card.counterOfLikes.textContent = res.likes.length; // меняем кол-во лайков
+        if (isUserInLikesArray(card.whoLiked, userId)) { // проверяем стоит ли лайк от пользователя
+          api.removeLike(cardId) // вызывает лайк или дизлайк
+          .then(res => {
+            card.renderLikes(res.likes, res.likes.length); // отрисовываем изменения
           })
           .catch(err => console.log(err))
+        } else {
+          api.pressLike(cardId)
+          .then(res => {
+            card.renderLikes(res.likes, res.likes.length);
+          })
+          .catch(err => console.log(err))
+        }
       }
     }, '.card-template');
   const cardElement = card.generateCard(checkCardStatus(userId, item.likes, item.owner._id));
