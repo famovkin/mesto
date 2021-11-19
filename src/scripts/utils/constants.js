@@ -17,3 +17,4 @@ export const nameInput = formEdit.querySelector('.popup__input_type_name'); // �
 export const jobInput = formEdit.querySelector('.popup__input_type_job'); // находим инпут с работой
 export const editPopupSubmitBtn = formEdit.querySelector('.popup__button');
 export const confirmPopupButton = document.querySelector('.popup__button_type_confirm');
+export const addPopupSubmitBtn = formAdd.querySelector('.popup__button');

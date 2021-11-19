@@ -66,4 +66,16 @@ export default class Api {
     })
     .then(res => Api.checkServerResponse(res))
   }
+
+  addNewCard(newCard) {
+    return fetch(`${this._baseUrl}cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: newCard.name,
+        link: newCard.link
+      })
+    })
+    .then(res => Api.checkServerResponse(res))
+  }
 }

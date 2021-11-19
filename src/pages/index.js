@@ -8,7 +8,8 @@ import {
   nameInput,
   jobInput,
   editPopupSubmitBtn,
-  confirmPopupButton
+  confirmPopupButton,
+  addPopupSubmitBtn
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -95,10 +96,15 @@ function createCard(item) { // функция для создания и воз�
 const popupAddForm = new PopupWithForm({ // ребенок Popup, этот экземпляр отвечает за сабмит формы и ее сброс при закрытии
   popupSelector: '.popup_type_add',
   handleFormSubmit: formData => { // в formData мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
-    const addedCardElement = createCard({ name: formData['place-name'], link: formData['place-link'] });
-    // в параметрах createCard объект с данными добавляемой карточки
-    cardList.addItem(addedCardElement, 'begin'); // второй параметр отвечает за отрисовку карточки в самом начале, без параметра карточка появится в конце
-    popupAddForm.close(); // закрываем форму
+    showStatusLoading(addPopupSubmitBtn, true); // показываем прелоадер
+    api.addNewCard({ name: formData['place-name'], link: formData['place-link'] })
+    .then(serverCardInfo => { // данные с сервера о добавленной карточке
+      const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
+      cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
+      popupAddForm.close();
+    })
+    .catch(err => console.log(err))
+    .finally(() => showStatusLoading(addPopupSubmitBtn, false)); // скрываем прелоадер
   }
 });
 
