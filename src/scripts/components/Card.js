@@ -52,6 +52,10 @@ export default class Card {
     this.whoLiked = newArrayLikes;
   }
 
+  removeCardElement() {
+    this._element.remove();
+  }
+
   _setEventListeners(isOwner) {
     if (isOwner) {
       this._deleteButton.addEventListener('click', () => {
