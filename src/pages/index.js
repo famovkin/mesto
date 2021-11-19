@@ -7,7 +7,8 @@ import {
   formUpdateAvatar,
   nameInput,
   jobInput,
-  editPopupSubmitBtn
+  editPopupSubmitBtn,
+  confirmPopupButton
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -57,7 +58,19 @@ function createCard(item) { // функция для создания и воз�
     },
     {
       handleCardClick: (cardName, cardlink) => popupImage.open(cardName, cardlink),
-      handleDeleteBtnClick: () => {},
+      handleDeleteBtnClick: (cardId) => {
+        confirmPopup.open();
+        confirmPopupButton.addEventListener('click', () => {
+          showStatusLoading(confirmPopupButton, true);
+          api.deleteCard(cardId)
+          .then(() => {
+            card.removeCardElement();
+            confirmPopup.close();
+          })
+          .catch(err => console.log(err))
+          .finally(() => showStatusLoading(confirmPopupButton, false))
+        });
+      },
       handleLikeBtnClick: cardId => {
         if (isUserInLikesArray(card.whoLiked, userId)) { // проверяем стоит ли лайк от пользователя
           api.removeLike(cardId) // вызывает лайк или дизлайк
