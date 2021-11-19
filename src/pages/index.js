@@ -100,15 +100,21 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
   popupSelector: '.popup_type_add',
   handleFormSubmit: formData => { // в formData мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
     showStatusLoading(addPopupSubmitBtn, true); // показываем прелоадер
-    api.addNewCard({ name: formData['place-name'], link: formData['place-link'] })
-    .then(serverCardInfo => { // данные с сервера о добавленной карточке
-      const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
-      cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
-      popupAddForm.close();
-    })
-    .catch(err => console.log(err))
-    .finally(() => showStatusLoading(addPopupSubmitBtn, false)); // скрываем прелоадер
-  }
+    checkUrlImage(formData)
+      .then((formData) => {
+        api.addNewCard({ name: formData['place-name'], link: formData['place-link'] })
+        .then(serverCardInfo => { // данные с сервера о добавленной карточке
+          const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
+          cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
+        })
+        .catch(() => console.error('Что-то пошло не так :('));
+      })
+      .catch(() => console.error('Что-то не так с картинкой :('))
+      .finally(() => {
+        showStatusLoading(addPopupSubmitBtn, false);
+        popupAddForm.close();
+      })
+    }
 });
 
 popupAddForm.setEventListeners(); // вешаем слушатели на форму
@@ -206,3 +212,12 @@ updateAvatarButton.addEventListener('click', () => {
   validatorForFormUpdateAvatar.resetValidation();
   updateAvatarForm.open();
 });
+
+function checkUrlImage(cardInfo) {
+  return new Promise((resolve, reject) => {
+    const image = document.createElement('img');
+    image.src = cardInfo['place-link'];
+    image.addEventListener('load', () => resolve(cardInfo));
+    image.addEventListener('error', () => reject());
+  })
+}
