@@ -34,10 +34,14 @@ popupImage.setEventListeners();
 
 let userId;
 
+function isUserInLikesArray (array, userId) {
+  const arrayOfLikedUsers = array.map(info => info['_id']); // создаем массив из id пользователей, поставивших лайк
+  return arrayOfLikedUsers.some(people => userId === people); // ищем пользователя в массиве выше, возвращаем булево значение
+}
+
 function checkCardStatus (userId, likesInfo, ownerUserId) {
   const status = {}; // объект для результата
-  const arrayOfLikedUsersd = likesInfo.map(info => info['_id']); // создаем массив из id пользователей, поставивших лайк
-  status['isLiked'] = arrayOfLikedUsersd.some(people => userId === people); // ищем пользователя в массиве выше
+  status['isLiked'] = isUserInLikesArray(likesInfo, userId)
   status['isOwner'] = userId === ownerUserId; // сравнимаем id пользователя и id автора
   return status;
 }
