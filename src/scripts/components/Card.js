@@ -24,8 +24,8 @@ export default class Card {
   generateCard({ isOwner, isLiked }) {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
-    this.likeButton = this._element.querySelector('.card__like-button');
-    this.counterOfLikes = this._element.querySelector('.card__like-counter');
+    this._likeButton = this._element.querySelector('.card__like-button');
+    this._counterOfLikes = this._element.querySelector('.card__like-counter');
 
     if (isOwner) {
       this._element.insertAdjacentHTML('afterbegin', '<button class="card__delete-button" type="button">');
@@ -33,12 +33,12 @@ export default class Card {
     }
 
     if (isLiked) {
-      this.likeButton.classList.add('card__like-button_type_liked');
+      this._likeButton.classList.add('card__like-button_type_liked');
     }
 
     this._setEventListeners(isOwner);
 
-    this.counterOfLikes.textContent = this.whoLiked.length;
+    this._counterOfLikes.textContent = this.whoLiked.length;
     this._element.querySelector('.card__title').textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
@@ -46,9 +46,9 @@ export default class Card {
     return this._element;
   }
 
-  renderLikes(newArrayLikes, newCount) {
-    this.likeButton.classList.toggle('card__like-button_type_liked');
-    this.counterOfLikes.textContent = newCount;
+  renderLikes(newArrayLikes, newValue) {
+    this._likeButton.classList.toggle('card__like-button_type_liked');
+    this._counterOfLikes.textContent = newValue;
     this.whoLiked = newArrayLikes;
   }
 
@@ -61,7 +61,7 @@ export default class Card {
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
-    this.likeButton.addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._handleLikeBtnClick(this._id);
     });
   }
