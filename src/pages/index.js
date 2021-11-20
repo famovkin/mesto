@@ -202,18 +202,22 @@ const updateAvatarForm = new PopupWithForm({
   popupSelector: '.popup_type_update-avatar',
   handleFormSubmit: formAvatarInfo => {
     showStatusLoading(updateAvatarSubmitBtn, true);
-    api.updateProfileAvatar(formAvatarInfo['avatar-link'])
-      .then(serverAvatarInfo => {
-        profileAvatar.src = serverAvatarInfo.avatar;
-        updateAvatarForm.close();
+    checkUrlImage(formAvatarInfo)
+      .then(formAvatarInfo => {
+        api.updateProfileAvatar(formAvatarInfo['avatar-link'])
+        .then(serverAvatarInfo => {
+          profileAvatar.src = serverAvatarInfo.avatar;
+          updateAvatarForm.close();
+        })
+        .catch(() => console.error('Что-то пошло не так :('))
       })
-      .catch(err => console.log(err))
+      .catch(() => console.error('Что-то не так с картинкой :('))
       .finally(() => {
         showStatusLoading(updateAvatarSubmitBtn, false);
         updateAvatarForm.close();
       })
   }
-})
+});
 
 updateAvatarForm.setEventListeners();
 
