@@ -171,7 +171,8 @@ const api = new Api({
     'Content-Type': 'application/json'
     }
   },
-  showStatusLoading
+  showStatusLoading,
+  error => errorPopup.open(error)
 );
 
 const cardList = new Section({ // создаем экземляр класса Section, который отвечает за добавление карточек в контейнере

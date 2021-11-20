@@ -1,23 +1,24 @@
 export default class Api {
-  static checkServerResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  }
-
-  constructor({ baseUrl, headers }, renderLoading) {
+  constructor({ baseUrl, headers }, renderLoading, renderError) {
     this._baseUrl = baseUrl;
     this._headers = headers;
     this._renderLoading = renderLoading;
-    this._editFormSumbitBtn = document.forms.information.querySelector('.popup__button');
+    this._renderError = renderError;
+  }
+
+  _checkServerResponse(res) {
+    if (res.status <= 200) {
+      return res.json();
+    }
+    return Promise.reject(res)
+    .catch(res => this._renderError(res.status))
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}users/me`, {
       headers: this._headers
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
   }
 
   editUserInfo({ name, job }) {
@@ -29,18 +30,17 @@ export default class Api {
         about: job
       })
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}cards`, {
       headers: this._headers
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
     .then(res => {
       return res;
     })
-    .catch(err => console.log(err));
   }
 
   pressLike(cardId) {
@@ -48,7 +48,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
   }
 
   removeLike(cardId) {
@@ -56,7 +56,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
   }
 
   deleteCard(cardId) {
@@ -64,7 +64,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
   }
 
   addNewCard(newCard) {
@@ -76,7 +76,7 @@ export default class Api {
         link: newCard.link
       })
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
   }
 
   updateProfileAvatar(newAvatarLink) {
@@ -87,6 +87,6 @@ export default class Api {
         avatar: newAvatarLink
       })
     })
-    .then(res => Api.checkServerResponse(res))
+    .then(res => this._checkServerResponse(res))
   }
 }
