@@ -1,0 +1,11 @@
+.popup__title-no-form {
+    margin: 0 0 34px;
+    font-size: 24px;
+  }
+
+@media (max-width: 425px) {
+  .popup__title-no-form {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+}

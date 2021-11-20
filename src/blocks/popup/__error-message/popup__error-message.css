@@ -1,0 +1,10 @@
+.popup__error-message {
+  margin: 0 0 30px;
+}
+
+@media (max-width: 425px) {
+  .popup__error-message {
+    font-size: 13px;
+    margin-bottom: 23px;
+  }
+}
