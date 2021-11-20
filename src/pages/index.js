@@ -177,7 +177,9 @@ const api = new Api({
     }
   },
   showStatusLoading,
-  error => errorPopup.open(error)
+  (textError, statusError) => {
+    errorPopup.open(textError, statusError);
+  }
 );
 
 const cardList = new Section({ // создаем экземляр класса Section, который отвечает за добавление карточек в контейнере

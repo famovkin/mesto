@@ -10,8 +10,9 @@ export default class Api {
     if (res.status <= 200) {
       return res.json();
     }
-    return Promise.reject(res)
-    .catch(res => this._renderError(res.status))
+    const errorStatus = res.status;
+    return res.json()
+    .then(res => this._renderError(res['message'], errorStatus));
   }
 
   getUserInfo() {
