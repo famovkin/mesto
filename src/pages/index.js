@@ -74,13 +74,13 @@ function createCard(item) { // функция для создания и воз�
           .then(res => {
             card.renderLikes(res.likes, res.likes.length); // отрисовываем изменения
           })
-          .catch(err => console.log(err))
+          .catch(err => console.log(err));
         } else {
           api.pressLike(cardId)
           .then(res => {
             card.renderLikes(res.likes, res.likes.length);
           })
-          .catch(err => console.log(err))
+          .catch(err => console.log(err));
         }
       }
     }, '.card-template');
@@ -93,25 +93,25 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
   popupSelector: '.popup_type_add',
   handleFormSubmit: formData => { // в formData мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
     showStatusLoading(addPopupSubmitBtn, true); // показываем прелоадер
-    new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => { // проверяем есть ли картинка по урлу
       const image = document.createElement('img');
       image.src = formData['place-link'];
-      image.addEventListener('load', () => resolve(formData));
+      image.addEventListener('load', () => resolve(formData)); // пробрасываем данные, если все ок
       image.addEventListener('error', () => reject());
     })
-    .then((formData) => {
-      api.addNewCard({ name: formData['place-name'], link: formData['place-link'] })
-      .then(serverCardInfo => { // данные с сервера о добавленной карточке
-        const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
-        cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
+      .then((formData) => {
+        api.addNewCard({ name: formData['place-name'], link: formData['place-link'] })
+          .then(serverCardInfo => { // данные с сервера о добавленной карточке
+            const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
+            cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
+          })
+          .catch(err => console.log(err));
       })
-      .catch(err => console.log(err))
-    })
-    .catch(() => errorPopup.open('Что-то не так с фотографией :('))
-    .finally(() => {
-      showStatusLoading(addPopupSubmitBtn, false);
-      popupAddForm.close();
-    })
+      .catch(() => errorPopup.open('Что-то не так с фотографией :('))
+      .finally(() => {
+        showStatusLoading(addPopupSubmitBtn, false); // убираем прелоадер
+        popupAddForm.close();
+      });
   }
 });
 
@@ -128,12 +128,12 @@ const profileInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: 
 const popupEditForm = new PopupWithForm({ // ребенок Popup, этот экземпляр отвечает за сабмит формы и ее сброс при закрытии
   popupSelector: '.popup_type_edit',
   handleFormSubmit: formUserInfo => { // в formUserInfo мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
-    showStatusLoading(editPopupSubmitBtn, true)
+    showStatusLoading(editPopupSubmitBtn, true);
     api.editUserInfo(formUserInfo)
       .then(serverUserInfo => { // ответ от сервера с данными о пользователе
         profileInfo.setUserInfo(serverUserInfo);
       })
-      .catch(err => console.log(err)) // обработчик ошибки
+      .catch(err => console.log(err))
       .finally(() => {
         showStatusLoading(editPopupSubmitBtn, false);
         popupEditForm.close();
@@ -144,7 +144,7 @@ const popupEditForm = new PopupWithForm({ // ребенок Popup, этот эк
 popupEditForm.setEventListeners();
 
 popupEditOpenBtn.addEventListener('click', () => {
-  validatorForFormEdit.resetValidation()
+  validatorForFormEdit.resetValidation();
   nameInput.value = profileInfo.getUserInfo()['name']; // заполняем поля инпутов текущими значениями, которые берем со страницы
   jobInput.value = profileInfo.getUserInfo()['job'];
   popupEditForm.open();
@@ -166,7 +166,7 @@ const api = new Api({
     }
   },
   showStatusLoading,
-  (textError, statusError) => {
+  (textError, statusError) => { // функция отображения попапа с ошибкой от сервера
     errorPopup.open(textError, statusError);
   }
 );
@@ -179,16 +179,16 @@ const cardList = new Section({ // создаем экземляр класса S
 }, '.places__cards');
 
 Promise.all([
-  api.getUserInfo(),
-  api.getInitialCards()
+  api.getUserInfo(), // запрос на данные профиля
+  api.getInitialCards() // и на массив карточек
   ])
-  .then(res => {
-    profileAvatar.src = res[0].avatar;
-    userId = res[0]._id; // получаем id пользователя
-    profileInfo.setUserInfo(res[0]); // в res[0] результат первого промиса в массиве, аналогично с остальными
-    cardList.renderItems(res[1]); // вызываем метод класса, отрисовываем карточки при загрузке страницы
-  })
-  .catch(err => console.log(err));
+    .then(res => {
+      profileAvatar.src = res[0].avatar;
+      userId = res[0]._id; // получаем id пользователя
+      profileInfo.setUserInfo(res[0]); // в res[0] результат первого промиса в массиве, аналогично с остальными
+      cardList.renderItems(res[1]); // вызываем метод класса, отрисовываем карточки при загрузке страницы
+    })
+    .catch(err => console.log(err));
 
 const confirmPopup = new PopupConfirm({
   popupSelector: '.popup_type_confirm',
@@ -218,19 +218,18 @@ const updateAvatarForm = new PopupWithForm({
       image.addEventListener('load', () => resolve(formAvatarInfo));
       image.addEventListener('error', () => reject());
     })
-    .then(formAvatarInfo => {
-      api.updateProfileAvatar(formAvatarInfo['avatar-link'])
-      .then(serverAvatarInfo => {
-        profileAvatar.src = serverAvatarInfo.avatar;
-        // updateAvatarForm.close();
+      .then(formAvatarInfo => {
+        api.updateProfileAvatar(formAvatarInfo['avatar-link'])
+          .then(serverAvatarInfo => {
+            profileAvatar.src = serverAvatarInfo.avatar;
+          })
+          .catch(err => console.log(err))
       })
-      .catch(err => console.log(err))
-    })
-    .catch(() => errorPopup.open('Что-то не так с аватаркой :('))
-    .finally(() => {
-      showStatusLoading(updateAvatarSubmitBtn, false);
-      updateAvatarForm.close();
-    })
+      .catch(() => errorPopup.open('Что-то не так с аватаркой :('))
+      .finally(() => {
+        showStatusLoading(updateAvatarSubmitBtn, false);
+        updateAvatarForm.close();
+      });
   }
 });
 

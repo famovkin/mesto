@@ -12,14 +12,14 @@ export default class Api {
     }
     const errorStatus = res.status;
     return res.json()
-    .then(res => this._renderError(res['message'], errorStatus));
+      .then(res => this._renderError(res['message'], errorStatus));
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}users/me`, {
       headers: this._headers
     })
-    .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
 
   editUserInfo({ name, job }) {
@@ -31,17 +31,17 @@ export default class Api {
         about: job
       })
     })
-    .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}cards`, {
       headers: this._headers
     })
-    .then(res => this._checkServerResponse(res))
-    .then(res => {
-      return res;
-    })
+      .then(res => this._checkServerResponse(res))
+      .then(res => {
+        return res;
+      });
   }
 
   pressLike(cardId) {
@@ -49,7 +49,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
 
   removeLike(cardId) {
@@ -57,7 +57,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
 
   deleteCard(cardId) {
@@ -65,7 +65,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
 
   addNewCard(newCard) {
@@ -77,7 +77,7 @@ export default class Api {
         link: newCard.link
       })
     })
-    .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
 
   updateProfileAvatar(newAvatarLink) {
@@ -88,6 +88,6 @@ export default class Api {
         avatar: newAvatarLink
       })
     })
-    .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
 }
