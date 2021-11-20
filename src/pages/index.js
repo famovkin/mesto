@@ -71,10 +71,12 @@ function createCard(item) { // функция для создания и воз�
           api.deleteCard(cardId)
           .then(() => {
             card.removeCardElement();
-            confirmPopup.close();
           })
           .catch(err => console.log(err))
-          .finally(() => showStatusLoading(confirmPopupButton, false))
+          .finally(() => {
+            showStatusLoading(confirmPopupButton, false);
+            confirmPopup.close();
+          })
         });
       },
       handleLikeBtnClick: cardId => {
@@ -136,10 +138,12 @@ const popupEditForm = new PopupWithForm({ // ребенок Popup, этот эк
     api.editUserInfo(formUserInfo)
       .then(serverUserInfo => { // ответ от сервера с данными о пользователе
         profileInfo.setUserInfo(serverUserInfo);
-        popupEditForm.close();
       })
       .catch(err => console.log(err)) // обработчик ошибки
-      .finally(() => showStatusLoading(editPopupSubmitBtn, false)); // скрыть прелоадер
+      .finally(() => {
+        showStatusLoading(editPopupSubmitBtn, false);
+        popupEditForm.close();
+      });
   }
 });
 
@@ -199,12 +203,14 @@ const updateAvatarForm = new PopupWithForm({
     showStatusLoading(updateAvatarSubmitBtn, true);
     api.updateProfileAvatar(formAvatarInfo['avatar-link'])
       .then(serverAvatarInfo => {
-        console.log(serverAvatarInfo);
         profileAvatar.src = serverAvatarInfo.avatar;
         updateAvatarForm.close();
       })
       .catch(err => console.log(err))
-      .finally(() => showStatusLoading(updateAvatarSubmitBtn, false));
+      .finally(() => {
+        showStatusLoading(updateAvatarSubmitBtn, false);
+        updateAvatarForm.close();
+      })
   }
 })
 
