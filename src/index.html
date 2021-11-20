@@ -81,12 +81,14 @@
       </div>
     </div>
     <div class="popup popup_type_confirm">
-      <div class="popup__container popup__container_type_confirm">
-        <h2 class="popup__title-no-form">Вы уверены?</h2>
+      <div class="popup__container">
         <button class="popup__close-button" type="button">
           <img class="popup__close-image" src="./images/close_icon.svg" alt="Крестик">
         </button>
-        <button class="popup__button popup__button_type_confirm" type="button">Да</button>
+        <form class="popup__form popup__form_type_confirm" name="update-avatar" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button class="popup__button" type="submit" type="button">Да</button>
+        </form>
       </div>
     </div>
     <div class="popup popup_type_update-avatar">
@@ -103,7 +105,7 @@
       </div>
     </div>
     <div class="popup popup_type_error">
-      <div class="popup__container popup__container_type_confirm">
+      <div class="popup__container popup__container_type_no-form">
         <h2 class="popup__title-no-form">Ошибка</h2>
         <button class="popup__close-button" type="button">
           <img class="popup__close-image" src="./images/close_icon.svg" alt="Крестик">
