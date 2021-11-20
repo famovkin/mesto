@@ -8,7 +8,7 @@ import {
   nameInput,
   jobInput,
   editPopupSubmitBtn,
-  confirmPopupButton,
+  confirmPopupBtn,
   addPopupSubmitBtn,
   updateAvatarButton,
   updateAvatarSubmitBtn,
@@ -18,12 +18,12 @@ import {
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
-import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
 import PopupWithError from '../scripts/components/PopupWithError.js';
+import PopupConfirm from '../scripts/components/PopupConfirm.js';
 import './index.css';
 
 const validatorForFormEdit = new FormValidator (config, formEdit);
@@ -64,20 +64,9 @@ function createCard(item) { // функция для создания и воз�
     },
     {
       handleCardClick: (cardName, cardlink) => popupImage.open(cardName, cardlink),
-      handleDeleteBtnClick: (cardId) => {
+      handleDeleteBtnClick: (cardId, cardElement) => {
         confirmPopup.open();
-        confirmPopupButton.addEventListener('click', () => {
-          showStatusLoading(confirmPopupButton, true);
-          api.deleteCard(cardId)
-          .then(() => {
-            card.removeCardElement();
-          })
-          .catch(err => console.log(err))
-          .finally(() => {
-            showStatusLoading(confirmPopupButton, false);
-            confirmPopup.close();
-          })
-        });
+        confirmPopup.getDelCardInfo(cardId, cardElement);
       },
       handleLikeBtnClick: cardId => {
         if (isUserInLikesArray(card.whoLiked, userId)) { // проверяем стоит ли лайк от пользователя
@@ -201,9 +190,23 @@ Promise.all([
   })
   .catch(err => console.log(err));
 
-  const confirmPopup = new Popup('.popup_type_confirm');
+const confirmPopup = new PopupConfirm({
+  popupSelector: '.popup_type_confirm',
+  handleFormSubmit: ({ cardId, cardElement }) => {
+    showStatusLoading(confirmPopupBtn, true);
+    api.deleteCard(cardId)
+      .then(() => {
+        cardElement.remove();
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        showStatusLoading(confirmPopupBtn, false);
+        confirmPopup.close();
+      });
+  }
+});
 
-  confirmPopup.setEventListeners();
+confirmPopup.setEventListeners();
 
 const updateAvatarForm = new PopupWithForm({
   popupSelector: '.popup_type_update-avatar',
