@@ -21,3 +21,5 @@ export const addPopupSubmitBtn = formAdd.querySelector('.popup__button');
 export const updateAvatarSubmitBtn = formUpdateAvatar.querySelector('.popup__button');
 export const updateAvatarButton = document.querySelector('.profile__avatar-edit-button');
 export const profileAvatar = document.querySelector('.profile__avatar-image');
+export const popupError = document.querySelector('.popup_type_error');
+export const popupErrButtonOk = popupError.querySelector('.popup__button');

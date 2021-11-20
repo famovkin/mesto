@@ -12,7 +12,8 @@ import {
   addPopupSubmitBtn,
   updateAvatarButton,
   updateAvatarSubmitBtn,
-  profileAvatar
+  profileAvatar,
+  popupErrButtonOk
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -22,6 +23,7 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
+import PopupWithError from '../scripts/components/PopupWithError.js';
 import './index.css';
 
 const validatorForFormEdit = new FormValidator (config, formEdit);
@@ -221,3 +223,8 @@ function checkUrlImage(cardInfo) {
     image.addEventListener('error', () => reject());
   })
 }
+
+const errorPopup = new PopupWithError('.popup_type_error');
+
+errorPopup.setEventListeners();
+popupErrButtonOk.addEventListener('click', () => errorPopup.close());
