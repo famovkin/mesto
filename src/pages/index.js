@@ -104,21 +104,26 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
   popupSelector: '.popup_type_add',
   handleFormSubmit: formData => { // в formData мы получаем объект с ключами - имена инпутов, указанные в index.html, и значениями - value самих инпутов
     showStatusLoading(addPopupSubmitBtn, true); // показываем прелоадер
-    checkUrlImage(formData)
-      .then((formData) => {
-        api.addNewCard({ name: formData['place-name'], link: formData['place-link'] })
-        .then(serverCardInfo => { // данные с сервера о добавленной карточке
-          const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
-          cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
-        })
-        .catch(() => console.error('Что-то пошло не так :('));
+    new Promise((resolve, reject) => {
+      const image = document.createElement('img');
+      image.src = formData['place-link'];
+      image.addEventListener('load', () => resolve(formData));
+      image.addEventListener('error', () => reject());
+    })
+    .then((formData) => {
+      api.addNewCard({ name: formData['place-name'], link: formData['place-link'] })
+      .then(serverCardInfo => { // данные с сервера о добавленной карточке
+        const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
+        cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
       })
-      .catch(() => console.error('Что-то не так с картинкой :('))
-      .finally(() => {
-        showStatusLoading(addPopupSubmitBtn, false);
-        popupAddForm.close();
-      })
-    }
+      .catch(err => console.log(err))
+    })
+    .catch(() => errorPopup.open('Что-то не так с фотографией :('))
+    .finally(() => {
+      showStatusLoading(addPopupSubmitBtn, false);
+      popupAddForm.close();
+    })
+  }
 });
 
 popupAddForm.setEventListeners(); // вешаем слушатели на форму
@@ -202,20 +207,25 @@ const updateAvatarForm = new PopupWithForm({
   popupSelector: '.popup_type_update-avatar',
   handleFormSubmit: formAvatarInfo => {
     showStatusLoading(updateAvatarSubmitBtn, true);
-    checkUrlImage(formAvatarInfo)
-      .then(formAvatarInfo => {
-        api.updateProfileAvatar(formAvatarInfo['avatar-link'])
-        .then(serverAvatarInfo => {
-          profileAvatar.src = serverAvatarInfo.avatar;
-          updateAvatarForm.close();
-        })
-        .catch(() => console.error('Что-то пошло не так :('))
+    new Promise((resolve, reject) => {
+      const image = document.createElement('img');
+      image.src = formAvatarInfo['avatar-link'];
+      image.addEventListener('load', () => resolve(formAvatarInfo));
+      image.addEventListener('error', () => reject());
+    })
+    .then(formAvatarInfo => {
+      api.updateProfileAvatar(formAvatarInfo['avatar-link'])
+      .then(serverAvatarInfo => {
+        profileAvatar.src = serverAvatarInfo.avatar;
+        // updateAvatarForm.close();
       })
-      .catch(() => console.error('Что-то не так с картинкой :('))
-      .finally(() => {
-        showStatusLoading(updateAvatarSubmitBtn, false);
-        updateAvatarForm.close();
-      })
+      .catch(err => console.log(err))
+    })
+    .catch(() => errorPopup.open('Что-то не так с аватаркой :('))
+    .finally(() => {
+      showStatusLoading(updateAvatarSubmitBtn, false);
+      updateAvatarForm.close();
+    })
   }
 });
 
@@ -225,15 +235,6 @@ updateAvatarButton.addEventListener('click', () => {
   validatorForFormUpdateAvatar.resetValidation();
   updateAvatarForm.open();
 });
-
-function checkUrlImage(cardInfo) {
-  return new Promise((resolve, reject) => {
-    const image = document.createElement('img');
-    image.src = cardInfo['place-link'];
-    image.addEventListener('load', () => resolve(cardInfo));
-    image.addEventListener('error', () => reject());
-  })
-}
 
 const errorPopup = new PopupWithError('.popup_type_error');
 
