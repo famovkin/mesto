@@ -12,8 +12,7 @@ import {
   addPopupSubmitBtn,
   updateAvatarButton,
   updateAvatarSubmitBtn,
-  profileAvatar,
-  popupErrButtonOk
+  profileAvatar
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
