@@ -163,10 +163,6 @@ const api = new Api({
     authorization: 'f8d069a4-3828-4aef-8f1b-77976b73046b',
     'Content-Type': 'application/json'
     }
-  },
-  showStatusLoading,
-  (textError, statusError) => { // функция отображения попапа с ошибкой от сервера
-    errorPopup.open(textError, statusError);
   }
 );
 

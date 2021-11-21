@@ -1,9 +1,7 @@
 export default class Api {
-  constructor({ baseUrl, headers }, renderLoading, renderError) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._renderLoading = renderLoading;
-    this._renderError = renderError;
   }
 
   _checkServerResponse(res) {
