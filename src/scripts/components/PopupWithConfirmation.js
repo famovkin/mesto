@@ -5,6 +5,7 @@ export default class PopupWithConfirmation extends Popup {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector('.popup__form');
+    this.initialTextButton = this._popup.querySelector('.popup__button').textContent;
   }
 
   getDelCardInfo(id, element) {

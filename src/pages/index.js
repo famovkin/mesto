@@ -53,11 +53,11 @@ function checkCardStatus (userId, likesInfo, ownerUserId) {
   return status;
 }
 
-function showStatusLoading(buttonElement, isLoading) {
+function showStatusLoading(buttonElement, isLoading, initialText) {
   if (isLoading) {
     buttonElement.textContent = 'Сохранение...';
   } else {
-    buttonElement.textContent = 'Сохранить';
+    buttonElement.textContent = initialText;
   }
 }
 
@@ -116,7 +116,7 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
       })
       .catch(() => errorPopup.open('Что-то не так с фотографией, попробуйте загрузить другую'))
       .finally(() => {
-        showStatusLoading(addPopupSubmitBtn, false); // убираем прелоадер
+        showStatusLoading(addPopupSubmitBtn, false, popupAddForm.initialTextButton); // убираем прелоадер
         popupAddForm.close();
       });
   }
@@ -142,7 +142,7 @@ const popupEditForm = new PopupWithForm({ // ребенок Popup, этот эк
       })
       .catch(err => errorPopup.open(err))
       .finally(() => {
-        showStatusLoading(editPopupSubmitBtn, false);
+        showStatusLoading(editPopupSubmitBtn, false, popupEditForm.initialTextButton);
         popupEditForm.close();
       });
   }
@@ -199,7 +199,7 @@ const confirmPopup = new PopupWithConfirmation({
       })
       .catch(err => errorPopup.open(err))
       .finally(() => {
-        showStatusLoading(confirmPopupBtn, false);
+        showStatusLoading(confirmPopupBtn, false, confirmPopup.initialTextButton);
         confirmPopup.close();
       });
   }
