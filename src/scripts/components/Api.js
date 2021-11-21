@@ -7,12 +7,10 @@ export default class Api {
   }
 
   _checkServerResponse(res) {
-    if (res.status <= 200) {
+    if (res.ok) {
       return res.json();
     }
-    const errorStatus = res.status;
-    return res.json()
-      .then(res => this._renderError(res['message'], errorStatus));
+      return Promise.reject(`Что-то пошло не так. Обратитесь к разработчику`);
   }
 
   getUserInfo() {

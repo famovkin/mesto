@@ -82,13 +82,13 @@ function createCard(item) { // функция для создания и воз�
           .then(res => {
             card.renderLikes(res.likes, res.likes.length); // отрисовываем изменения
           })
-          .catch(err => console.log(err));
+          .catch(err => errorPopup.open(err));
         } else {
           api.pressLike(cardId)
           .then(res => {
             card.renderLikes(res.likes, res.likes.length);
           })
-          .catch(err => console.log(err));
+          .catch(err => errorPopup.open(err));
         }
       }
     }, '.card-template');
@@ -113,9 +113,9 @@ const popupAddForm = new PopupWithForm({ // ребенок Popup, этот эк�
             const cardElementFromForm = createCard(serverCardInfo); // создаем элемент
             cardList.addItem(cardElementFromForm, 'begin'); // без второго параметра карточка появится в конце
           })
-          .catch(err => console.log(err));
+          .catch(err => errorPopup.open(err));
       })
-      .catch(() => errorPopup.open('Что-то не так с фотографией :('))
+      .catch(() => errorPopup.open('Что-то не так с фотографией, попробуйте загрузить другую'))
       .finally(() => {
         showStatusLoading(addPopupSubmitBtn, false); // убираем прелоадер
         popupAddForm.close();
@@ -141,7 +141,7 @@ const popupEditForm = new PopupWithForm({ // ребенок Popup, этот эк
       .then(serverUserInfo => { // ответ от сервера с данными о пользователе
         profileInfo.setUserInfo(serverUserInfo);
       })
-      .catch(err => console.log(err))
+      .catch(err => errorPopup.open(err))
       .finally(() => {
         showStatusLoading(editPopupSubmitBtn, false);
         popupEditForm.close();
@@ -188,7 +188,7 @@ Promise.all([
       profileInfo.setUserInfo(res[0]); // в res[0] результат первого промиса в массиве, аналогично с остальными
       cardList.renderItems(res[1]); // вызываем метод класса, отрисовываем карточки при загрузке страницы
     })
-    .catch(err => console.log(err));
+    .catch(err => errorPopup.open(err));
 
 const confirmPopup = new PopupWithConfirmation({
   popupSelector: '.popup_type_confirm',
@@ -198,7 +198,7 @@ const confirmPopup = new PopupWithConfirmation({
       .then(() => {
         cardElement.remove();
       })
-      .catch(err => console.log(err))
+      .catch(err => errorPopup.open(err))
       .finally(() => {
         showStatusLoading(confirmPopupBtn, false);
         confirmPopup.close();
@@ -223,9 +223,9 @@ const updateAvatarForm = new PopupWithForm({
           .then(serverAvatarInfo => {
             profileAvatar.src = serverAvatarInfo.avatar;
           })
-          .catch(err => console.log(err))
+          .catch(err => errorPopup.open(err))
       })
-      .catch(() => errorPopup.open('Что-то не так с аватаркой :('))
+      .catch(() => errorPopup.open('Что-то не так с аватаркой, попробуйте загрузить другую'))
       .finally(() => {
         showStatusLoading(updateAvatarSubmitBtn, false);
         updateAvatarForm.close();

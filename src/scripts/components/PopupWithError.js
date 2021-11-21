@@ -5,12 +5,10 @@ export default class PopupWithError extends Popup {
     super(popupSelector);
     this._okButton = this._popup.querySelector('.popup__button');
     this._errorText = this._popup.querySelector('.popup__error-message');
-    this._errorStatus = this._popup.querySelector('.popup__title-no-form');
   }
 
-  open(error, status = '') {
+  open(error) {
     this._errorText.textContent = error;
-    this._errorStatus.textContent = `Ошибка ${status}`;
     super.open();
   }
 
