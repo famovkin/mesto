@@ -54,6 +54,14 @@ function checkCardStatus (userId, likesInfo, ownerUserId) {
   return status;
 }
 
+function showStatusLoading(buttonElement, isLoading) {
+  if (isLoading) {
+    buttonElement.textContent = 'Сохранение...';
+  } else {
+    buttonElement.textContent = 'Сохранить';
+  }
+}
+
 function createCard(item) { // функция для создания и возвращения карточки
   const card = new Card({
     name: item.name,
@@ -149,14 +157,6 @@ popupEditOpenBtn.addEventListener('click', () => {
   jobInput.value = profileInfo.getUserInfo()['job'];
   popupEditForm.open();
 });
-
-function showStatusLoading(buttonElement, isLoading) {
-  if (isLoading) {
-    buttonElement.textContent = 'Сохранение...';
-  } else {
-    buttonElement.textContent = 'Сохранить';
-  }
-}
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-30/',
