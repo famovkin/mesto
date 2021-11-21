@@ -23,7 +23,7 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
 import PopupWithError from '../scripts/components/PopupWithError.js';
-import PopupConfirm from '../scripts/components/PopupConfirm.js';
+import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
 import './index.css';
 
 const validatorForFormEdit = new FormValidator (config, formEdit);
@@ -190,7 +190,7 @@ Promise.all([
     })
     .catch(err => console.log(err));
 
-const confirmPopup = new PopupConfirm({
+const confirmPopup = new PopupWithConfirmation({
   popupSelector: '.popup_type_confirm',
   handleFormSubmit: ({ cardId, cardElement }) => {
     showStatusLoading(confirmPopupBtn, true);
