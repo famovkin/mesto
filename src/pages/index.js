@@ -243,4 +243,3 @@ updateAvatarButton.addEventListener('click', () => {
 const errorPopup = new PopupWithError('.popup_type_error');
 
 errorPopup.setEventListeners();
-popupErrButtonOk.addEventListener('click', () => errorPopup.close());

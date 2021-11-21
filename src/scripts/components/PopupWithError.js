@@ -14,7 +14,8 @@ export default class PopupWithError extends Popup {
     super.open();
   }
 
-  close() {
-    this._popup.classList.remove('popup_opened');
+  setEventListeners() {
+    this._okButton.addEventListener('click', () => this.close());
+    super.setEventListeners();
   }
 }
