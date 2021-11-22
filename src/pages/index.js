@@ -222,7 +222,7 @@ const updateAvatarForm = new PopupWithForm({
       })
       .catch(() => errorPopup.open('Что-то не так с аватаркой, попробуйте загрузить другую'))
       .finally(() => {
-        showStatusLoading(updateAvatarSubmitBtn, false);
+        showStatusLoading(updateAvatarSubmitBtn, false, updateAvatarForm.initialTextButton);
         updateAvatarForm.close();
       });
   }
